@@ -1,0 +1,214 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Yard Buyer – FAQs | Aspiral Networks Pvt. Ltd.</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+    <!-- Updated asset paths -->
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="/assets/css/noscript.css" />
+    </noscript>
+    <style>
+        /* Ensure question-answer text is left-aligned like Seller FAQs */
+        .faq-section p {
+            text-align: left;
+            margin-bottom: 1em;
+        }
+    </style>
+</head>
+
+<body class="is-preload">
+    <div id="page-wrapper">
+
+        <!-- Header -->
+        <div id="header-placeholder"></div>
+
+        <!-- Main -->
+        <article id="main">
+
+            <header class="special container">
+                <span class="icon solid fa-question-circle"></span>
+                <h2><strong>Buyer FAQs</strong></h2>
+                <p>Find answers to the most common questions about using the Yard Buyer App.</p>
+            </header>
+
+            <section class="wrapper style1 container faq-section">
+
+                <!-- Getting Started -->
+                <section>
+                    <header>
+                        <h3>1. Getting Started</h3>
+                    </header>
+
+                    <p><strong>Q1. Who can register as a buyer on Yard?</strong><br>
+                        Any individual or customer in India can register and start ordering products online.</p>
+
+                    <p><strong>Q2. How do I install the Yard Buyer App?</strong><br>
+                        You can download the app from the Downloads page or directly from the Google Play Store / App
+                        Store.</p>
+
+                    <p><strong>Q3. Is there any registration fee?</strong><br>
+                        No, registration is completely free. You only pay for the products you purchase.</p>
+                </section>
+
+                <!-- Account & Verification -->
+                <section>
+                    <header>
+                        <h3>2. Account & Verification</h3>
+                    </header>
+
+                    <p><strong>Q4. What information is required to create a buyer account?</strong><br>
+                        Basic personal details such as name, mobile number, email, and delivery address are required.
+                    </p>
+
+                    <p><strong>Q5. How do I update my account information?</strong><br>
+                        You can update your profile, contact details, and delivery addresses via the app settings.</p>
+
+                    <p><strong>Q6. Can my account be suspended?</strong><br>
+                        Yes, for repeated policy violations, fraudulent activity, or misuse of the platform.</p>
+                </section>
+
+                <!-- Ordering & Delivery -->
+                <section>
+                    <header>
+                        <h3>3. Orders & Delivery</h3>
+                    </header>
+
+                    <p><strong>Q7. How do I place an order?</strong><br>
+                        Browse products, add to cart, select delivery address, and complete payment through the app.</p>
+
+                    <p><strong>Q8. How can I track my order?</strong><br>
+                        Real-time order tracking is available in your dashboard within the app.</p>
+
+                    <p><strong>Q9. What if my order is delayed?</strong><br>
+                        Contact support via the app or check the order status for updates. Delivery may depend on seller
+                        location and logistics partners.</p>
+                </section>
+
+                <!-- Payments -->
+                <section>
+                    <header>
+                        <h3>4. Payments & Refunds</h3>
+                    </header>
+
+                    <p><strong>Q10. What payment methods are accepted?</strong><br>
+                        Credit/Debit cards, UPI, net banking, and supported digital wallets.</p>
+
+                    <p><strong>Q11. Can I cancel an order?</strong><br>
+                        Buyer-initiated cancellations are allowed before order confirmation. After confirmation, contact
+                        support for assistance.</p>
+
+                    <p><strong>Q12. How are refunds processed?</strong><br>
+                        Refunds are processed via the original payment method within 5–7 business days.</p>
+                </section>
+
+                <!-- Fees & Charges -->
+                <section>
+                    <header>
+                        <h3>5. Fees & Charges</h3>
+                    </header>
+
+                    <p><strong>Q13. Are there any platform fees?</strong><br>
+                        Yes, a small service fee may be applied during checkout. All fees are clearly displayed before
+                        payment.</p>
+
+                    <p><strong>Q14. Are there hidden charges?</strong><br>
+                        No, all charges are transparent and visible during the payment process.</p>
+                </section>
+
+                <!-- Support -->
+                <section>
+                    <header>
+                        <h3>6. Support & Contact</h3>
+                    </header>
+
+                    <p><strong>Q15. How do I contact support?</strong><br>
+                        Use the Help & Support section within the app or email <strong>support@Aspiral
+                            Networks.com</strong>.</p>
+
+                    <p><strong>Q16. How can I report issues with a seller?</strong><br>
+                        You can report problems via the order details page or contact support directly.</p>
+                </section>
+
+            </section>
+
+        </article>
+
+        <!-- Footer -->
+        <div id="footer-placeholder"></div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/jquery.dropotron.min.js"></script>
+    <script src="/assets/js/jquery.scrollex.min.js"></script>
+    <script src="/assets/js/jquery.scrolly.min.js"></script>
+    <script src="/assets/js/browser.min.js"></script>
+    <script src="/assets/js/breakpoints.min.js"></script>
+    <script src="/assets/js/util.js"></script>
+    <script src="/assets/js/main.js"></script>
+
+    <script>
+        // Load header from same folder
+        fetch('/header.html')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('header-placeholder').innerHTML = html;
+                initHeaderScripts();
+                setupMobileNav();
+            });
+
+        fetch('/footer.html')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('footer-placeholder').innerHTML = html;
+
+                // Initialize dropdown AFTER header is injected
+                initHeaderScripts();
+            });
+
+        function initHeaderScripts() {
+            $('#nav > ul').dropotron({
+                offsetY: 0,
+                hoverDelay: 0
+            });
+        }
+
+        function setupMobileNav() {
+            var $body = $('body');
+
+            // Remove old panel/title
+            $('#navPanel, #titleBar').remove();
+
+            // Build title bar
+            $('<div id="titleBar">' +
+                '<a href="#navPanel" class="toggle"></a>' +
+                '<span class="title">' + $('#logo').html() + '</span>' +
+                '</div>').appendTo($body);
+
+            // Generate mobile-friendly menu (navList = HTML5UP built-in)
+            var navHtml = $('#nav').navList();
+
+            // Build mobile nav panel
+            $('<div id="navPanel">' +
+                '<nav>' + navHtml + '</nav>' +
+                '</div>')
+                .appendTo($body)
+                .panel({
+                    delay: 500,
+                    hideOnClick: true,
+                    hideOnSwipe: true,
+                    resetScroll: true,
+                    resetForms: true,
+                    side: 'left'
+                });
+        }
+    </script>
+
+</body>
+
+</html>

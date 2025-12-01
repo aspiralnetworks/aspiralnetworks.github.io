@@ -1,0 +1,234 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Yard Seller – Pricing | Aspiral Networks Pvt. Ltd.</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+    <!-- Updated asset paths -->
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="/assets/css/noscript.css" />
+    </noscript>
+</head>
+
+<body class="is-preload">
+    <div id="page-wrapper">
+
+        <!-- Header -->
+        <div id="header-placeholder"></div>
+
+        <!-- Main -->
+        <article id="main">
+
+            <header class="special container">
+                <span class="icon solid fa-tags"></span>
+                <h2><strong>Yard Seller Pricing</strong></h2>
+                <p>Simple, transparent, and designed to help local retailers grow.</p>
+            </header>
+
+            <section class="wrapper style1 container">
+                <header>
+                    <h3>Subscription Plans</h3>
+                </header>
+                <p>
+                    Yard Seller App offers flexible subscription plans designed to fit every size of retail
+                    business.
+                </p>
+
+                <!-- Pricing -->
+                <div class="row aln-center" style="display: flex; flex-wrap: wrap; margin-bottom: 2.5rem;">
+
+                    <div class="col-3 col-12-mobile" style="display: flex;">
+                        <section class="box"
+                            style="height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+                            <header>
+                                <h3>Silver Plan</h3>
+                                <p>Perfect for new sellers starting their online journey.</p>
+                            </header>
+                            <ul>
+                                <li>List up to 50 products</li>
+                                <li>Order management</li>
+                                <li>Basic analytics</li>
+                                <li>No featured placement</li>
+                            </ul>
+                            <footer>
+                                <a href="javascript:void(0);" class="button alt" onclick="showPlanModal()">₹200 /
+                                    month</a>
+                            </footer>
+                        </section>
+                    </div>
+
+                    <div class="col-3 col-12-mobile" style="display: flex;">
+                        <section class="box"
+                            style="height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+                            <header>
+                                <h3>Gold Plan</h3>
+                                <p>For growing stores wanting more visibility and tools.</p>
+                            </header>
+                            <ul>
+                                <li>List up to 100 products</li>
+                                <li>Featured placement in buyer app</li>
+                                <li>Sales & performance reports (limited)</li>
+                                <li>Email support - Get response within 6 hours</li>
+                            </ul>
+                            <footer>
+                                <a href="javascript:void(0);" class="button special" onclick="showPlanModal()">₹250 /
+                                    month</a>
+                            </footer>
+                        </section>
+                    </div>
+
+                    <div class="col-3 col-12-mobile" style="display: flex;">
+                        <section class="box"
+                            style="height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+                            <header>
+                                <h3>Platinum Plan</h3>
+                                <p>Full-featured tools for professional retailers.</p>
+                            </header>
+                            <ul>
+                                <li>Unlimited product listings</li>
+                                <li>Sales & performance reports</li>
+                                <li>Dedicated Account Manager</li>
+                                <li>Early access to platform features</li>
+                                <li>Priority Email support - Get response within 2 hours</li>
+                            </ul>
+                            <footer>
+                                <a href="javascript:void(0);" class="button" onclick="showPlanModal()">₹500 / month</a>
+                            </footer>
+                        </section>
+                    </div>
+                </div>
+
+
+                <!-- Fees Section -->
+                <section>
+                    <header>
+                        <h3>Platform & Transaction Fees</h3>
+                    </header>
+
+                    <p>Yard keeps fees transparent and straightforward.</p>
+
+                    <ul>
+                        <li><strong>Platform Fee:</strong> Charged to buyers during checkout.</li>
+                        <li><strong>Seller Subscription:</strong> Monthly plan chosen by the seller.</li>
+                        <li><strong>Payment Gateway Charges:</strong> Standard UPI/card/bank fees apply.</li>
+                    </ul>
+                </section>
+
+                <!-- Additional Features -->
+                <section>
+                    <header>
+                        <h3>What’s Included for Free</h3>
+                    </header>
+
+                    <ul>
+                        <li>Seller KYC verification</li>
+                        <li>Shop verification</li>
+                        <li>Bank account verification</li>
+                        <li>Unlimited withdrawals (anytime)</li>
+                        <li>Listing review & approval</li>
+                        <li>Secure online payments</li>
+                        <li>Order tracking & notifications</li>
+                        <li>Sales analytics dashboard</li>
+                        <li>Catalog management tools</li>
+                    </ul>
+                </section>
+            </section>
+
+        </article>
+
+        <!-- Footer -->
+        <div id="footer-placeholder"></div>
+
+    </div>
+
+    <div id="planModal"
+        style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center;">
+        <div style="background:white; padding:30px; border-radius:10px; max-width:300px; text-align:center;">
+            <h3>Select Plan in App</h3>
+            <p>To complete your subscription, please open the YardStore mobile app.</p>
+            <button onclick="closeModal()" style="margin-top:15px;">OK</button>
+        </div>
+    </div>
+
+    <script>
+        function showPlanModal() {
+            document.getElementById("planModal").style.display = "flex";
+        }
+        function closeModal() {
+            document.getElementById("planModal").style.display = "none";
+        }
+    </script>
+
+    <!-- Scripts -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/jquery.dropotron.min.js"></script>
+    <script src="/assets/js/jquery.scrollex.min.js"></script>
+    <script src="/assets/js/jquery.scrolly.min.js"></script>
+    <script src="/assets/js/browser.min.js"></script>
+    <script src="/assets/js/breakpoints.min.js"></script>
+    <script src="/assets/js/util.js"></script>
+    <script src="/assets/js/main.js"></script>
+
+    <script>
+        // Load header from same folder
+        fetch('/header.html')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('header-placeholder').innerHTML = html;
+                initHeaderScripts();
+                setupMobileNav();
+            });
+
+        fetch('/footer.html')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('footer-placeholder').innerHTML = html;
+
+                // Initialize dropdown AFTER header is injected
+                initHeaderScripts();
+            });
+
+        function initHeaderScripts() {
+            $('#nav > ul').dropotron({
+                offsetY: 0,
+                hoverDelay: 0
+            });
+        }
+
+        function setupMobileNav() {
+            var $body = $('body');
+
+            // Remove old panel/title
+            $('#navPanel, #titleBar').remove();
+
+            // Build title bar
+            $('<div id="titleBar">' +
+                '<a href="#navPanel" class="toggle"></a>' +
+                '<span class="title">' + $('#logo').html() + '</span>' +
+                '</div>').appendTo($body);
+
+            // Generate mobile-friendly menu (navList = HTML5UP built-in)
+            var navHtml = $('#nav').navList();
+
+            // Build mobile nav panel
+            $('<div id="navPanel">' +
+                '<nav>' + navHtml + '</nav>' +
+                '</div>')
+                .appendTo($body)
+                .panel({
+                    delay: 500,
+                    hideOnClick: true,
+                    hideOnSwipe: true,
+                    resetScroll: true,
+                    resetForms: true,
+                    side: 'left'
+                });
+        }
+    </script>
+
+</body>
+
+</html>

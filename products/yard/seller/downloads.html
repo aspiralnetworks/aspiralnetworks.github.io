@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Yard Seller App – Downloads | Aspiral Networks Pvt. Ltd.</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+    <!-- Updated asset paths -->
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <noscript>
+        <link rel="stylesheet" href="/assets/css/noscript.css" />
+    </noscript>
+</head>
+
+<body class="is-preload">
+    <div id="page-wrapper">
+
+        <!-- Header -->
+        <div id="header-placeholder"></div>
+
+        <!-- Main -->
+        <article id="main">
+
+            <section class="wrapper style1 container special">
+                <img src="/assets/images/YardStore.JPG" style="width: 100px; height: auto; border-radius: 20px;"
+                    alt="seller app">
+
+                <h2>Download the <strong>Yard Seller App</strong></h2>
+                <p>Start selling online, manage your store, accept payments, and grow your business with
+                    ease.</p>
+            </section>
+
+            <header class="special container">
+                <span class="icon solid fa-download"></span>
+            </header>
+
+            <!-- Download Section -->
+            <section class="wrapper style1 container special">
+
+                <div class="row gtr-150">
+
+                    <div class="col-6 col-12-narrower">
+                        <section>
+                            <i class="fa-brands fa-android fa-3x"></i>
+                            <header>
+                                <h3>Android Download</h3>
+                            </header>
+                            <p>
+                                Download the Yard Seller App for Android devices.
+                                Easy setup, instant onboarding, and complete store management tools.
+                            </p>
+                            <footer>
+                                <ul class="buttons">
+                                    <li><a href="#" class="button primary">Download APK</a></li>
+                                </ul>
+                            </footer>
+                        </section>
+                    </div>
+
+                    <div class="col-6 col-12-narrower">
+                        <section>
+                            <i class="fa-brands fa-apple fa-3x"></i>
+                            <header>
+                                <h3>iOS Download</h3>
+                            </header>
+                            <p>
+                                The iOS version of the Yard Seller App will be available soon.
+                                Stay tuned for updates.
+                            </p>
+                            <footer>
+                                <ul class="buttons">
+                                    <li><a class="button disabled">Coming Soon</a></li>
+                                </ul>
+                            </footer>
+                        </section>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Features Section -->
+            <section class="wrapper style2 container special-alt">
+                <div class="row gtr-50">
+
+                    <div class="col-8 col-12-narrower">
+                        <header>
+                            <h2>Why Sellers Choose <strong>Yard Services</strong></h2>
+                        </header>
+
+                        <ul>
+                            <li>Simple onboarding with KYC & shop verification</li>
+                            <li>Easy product upload & catalog management</li>
+                            <li>Real-time order tracking</li>
+                            <li>Online payment acceptance with secure settlements</li>
+                            <li>Withdraw earnings anytime</li>
+                            <li>Transparent subscription and platform fees</li>
+                            <li>Sales reports, insights & notifications</li>
+                            <li>Listing verification for quality and trust</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-4 col-12-narrower imp-narrower">
+                        <ul class="featured-icons">
+                            <li><span class="icon solid fa-check-circle"></span></li>
+                            <li><span class="icon solid fa-store"></span></li>
+                            <li><span class="icon solid fa-money-bill-wave"></span></li>
+                            <li><span class="icon solid fa-camera"></span></li>
+                            <li><span class="icon solid fa-file-invoice"></span></li>
+                            <li><span class="icon solid fa-user-shield"></span></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+
+        </article>
+
+        <!-- Footer -->
+        <div id="footer-placeholder"></div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/jquery.dropotron.min.js"></script>
+    <script src="/assets/js/jquery.scrollex.min.js"></script>
+    <script src="/assets/js/jquery.scrolly.min.js"></script>
+    <script src="/assets/js/browser.min.js"></script>
+    <script src="/assets/js/breakpoints.min.js"></script>
+    <script src="/assets/js/util.js"></script>
+    <script src="/assets/js/main.js"></script>
+
+    <script>
+        // Load header from same folder
+        fetch('/header.html')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('header-placeholder').innerHTML = html;
+                initHeaderScripts();
+                setupMobileNav();
+            });
+
+        fetch('/footer.html')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('footer-placeholder').innerHTML = html;
+
+                // Initialize dropdown AFTER header is injected
+                initHeaderScripts();
+            });
+
+        function initHeaderScripts() {
+            $('#nav > ul').dropotron({
+                offsetY: 0,
+                hoverDelay: 0
+            });
+        }
+
+        function setupMobileNav() {
+            var $body = $('body');
+
+            // Remove old panel/title
+            $('#navPanel, #titleBar').remove();
+
+            // Build title bar
+            $('<div id="titleBar">' +
+                '<a href="#navPanel" class="toggle"></a>' +
+                '<span class="title">' + $('#logo').html() + '</span>' +
+                '</div>').appendTo($body);
+
+            // Generate mobile-friendly menu (navList = HTML5UP built-in)
+            var navHtml = $('#nav').navList();
+
+            // Build mobile nav panel
+            $('<div id="navPanel">' +
+                '<nav>' + navHtml + '</nav>' +
+                '</div>')
+                .appendTo($body)
+                .panel({
+                    delay: 500,
+                    hideOnClick: true,
+                    hideOnSwipe: true,
+                    resetScroll: true,
+                    resetForms: true,
+                    side: 'left'
+                });
+        }
+    </script>
+
+    <script>
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>
