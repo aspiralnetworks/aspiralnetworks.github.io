@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<!--
+	Twenty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>YardBuy – Account & Data Deletion | Aspiral Networks Pvt. Ltd.</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+	<!-- Updated asset paths -->
+	<link rel="stylesheet" href="/assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="/assets/css/noscript.css" />
+	</noscript>
+</head>
+
+<body class="is-preload">
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<div id="header-placeholder"></div>
+
+		<!-- Main -->
+		<article id="main">
+
+			<header class="special container">
+				<span class="icon solid fa-user-shield"></span>
+				<h2><strong>Account & Data Deletion — YardBuy (Buyer App)</strong></h2>
+				<p style="font-style: italic;">This page explains how buyers can request deletion of their YardBuy
+					account and associated personal data.</p>
+				<p><strong>Operated by: Aspiral Networks Pvt. Ltd.</strong></p>
+			</header>
+
+			<!-- One -->
+			<section class="wrapper style1 container">
+
+				<section>
+					<h3>How to Delete Your Account (In-App)</h3>
+					<ol>
+						<li>Open the <strong>YardBuy</strong> app.</li>
+						<li>Go to <strong>Profile → My Profile</strong>.</li>
+						<li>Tap <strong>Delete Account</strong>.</li>
+						<li>Complete OTP verification.</li>
+						<li>Confirm deletion.</li>
+					</ol>
+					<p>This is the fastest and preferred method. You will receive a confirmation once the deletion is
+						processed.</p>
+				</section>
+
+				<section>
+					<h3>If You Cannot Access the App</h3>
+					<p>Email us at: <a href="mailto:yard-services@spiralnetworks.in">yard-services@spiralnetworks.in</a>
+					</p>
+					<p>Please include the following information:</p>
+					<ul>
+						<li>Registered phone number or email</li>
+						<li>Full name</li>
+						<li>A statement requesting permanent deletion of your YardBuy account</li>
+					</ul>
+					<p>We may verify your request via OTP or additional confirmation.</p>
+				</section>
+
+				<section>
+					<h3>What Data Will Be Deleted</h3>
+					<ul>
+						<li>Name</li>
+						<li>Phone number & email</li>
+						<li>Login credentials and authentication tokens</li>
+						<li>Saved addresses and delivery locations</li>
+						<li>App profile data, preferences, and saved items</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>What Data We May Retain</h3>
+					<p>Certain information must be retained for legal, tax, and operational purposes, including:</p>
+					<ul>
+						<li>Past orders</li>
+						<li>Payment confirmations and invoices</li>
+						<li>Refund records</li>
+						<li>Customer support communications related to transactions</li>
+					</ul>
+					<p>All retained data is anonymized to remove personal identifiers and is kept only for lawful
+						purposes.</p>
+				</section>
+
+				<section>
+					<h3>Retention Period & Timeline</h3>
+					<ul>
+						<li>Acknowledgement of deletion request: <strong>5 business days</strong></li>
+						<li>Deletion processing: <strong>30 days</strong> (except legally required records)</li>
+						<li>Statutory records (orders, invoices) may be retained up to <strong>6 years</strong> per
+							Indian law</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Contact</h3>
+					<p>If you have questions or need updates regarding your deletion request, contact: <a
+							href="mailto:yard-services@spiralnetworks.in">yard-services@spiralnetworks.in</a></p>
+				</section>
+
+			</section>
+
+		</article>
+
+		<!-- Footer -->
+		<div id="footer-placeholder"></div>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/jquery.dropotron.min.js"></script>
+	<script src="/assets/js/jquery.scrollex.min.js"></script>
+	<script src="/assets/js/jquery.scrolly.min.js"></script>
+	<script src="/assets/js/browser.min.js"></script>
+	<script src="/assets/js/breakpoints.min.js"></script>
+	<script src="/assets/js/util.js"></script>
+	<script src="/assets/js/main.js"></script>
+
+	<script>
+		// Load header from same folder
+		fetch('/header.html')
+			.then(res => res.text())
+			.then(html => {
+				document.getElementById('header-placeholder').innerHTML = html;
+				initHeaderScripts();
+				setupMobileNav();
+			});
+
+		fetch('/footer.html')
+			.then(res => res.text())
+			.then(html => {
+				document.getElementById('footer-placeholder').innerHTML = html;
+
+				// Initialize dropdown AFTER header is injected
+				initHeaderScripts();
+			});
+
+		function initHeaderScripts() {
+			$('#nav > ul').dropotron({
+				offsetY: 0,
+				hoverDelay: 0
+			});
+		}
+
+		function setupMobileNav() {
+			var $body = $('body');
+
+			// Remove old panel/title
+			$('#navPanel, #titleBar').remove();
+
+			// Build title bar
+			$('<div id="titleBar">' +
+				'<a href="#navPanel" class="toggle"></a>' +
+				'<span class="title">' + $('#logo').html() + '</span>' +
+				'</div>').appendTo($body);
+
+			// Generate mobile-friendly menu (navList = HTML5UP built-in)
+			var navHtml = $('#nav').navList();
+
+			// Build mobile nav panel
+			$('<div id="navPanel">' +
+				'<nav>' + navHtml + '</nav>' +
+				'</div>')
+				.appendTo($body)
+				.panel({
+					delay: 500,
+					hideOnClick: true,
+					hideOnSwipe: true,
+					resetScroll: true,
+					resetForms: true,
+					side: 'left'
+				});
+		}
+	</script>
+
+</body>
+
+</html>
