@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Redirecting…</title>
+    <script>
+        const ua = navigator.userAgent || navigator.vendor || window.opera;
+
+        if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
+            window.location.href = "https://apps.apple.com/app/id6756651062";
+        } else if (/android/i.test(ua)) {
+            window.location.href = "https://play.google.com/store/apps/details?id=in.spiralnetworks.yardstore";
+        } else {
+            window.location.href = "https://spiralnetworks.in/products/yard/seller/downloads.html";
+        }
+    </script>
+</head>
+
+<body>
+    Redirecting…
+</body>
+
+</html>
