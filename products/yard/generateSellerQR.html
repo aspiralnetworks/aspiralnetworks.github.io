@@ -1,0 +1,10 @@
+<div id="qr"></div>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs/qrcode.min.js"></script>
+<script>
+    new QRCode(document.getElementById("qr"), {
+        text: "https://spiralnetworks.in/products/yard/seller/download-qr.html",  // 👈 THIS IS THE DOMAIN
+        width: 300,
+        height: 300,
+        correctLevel: QRCode.CorrectLevel.H
+    });
+</script>
