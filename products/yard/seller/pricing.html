@@ -42,10 +42,10 @@
 
                     <div class="col-3 col-12-mobile" style="display: flex;">
                         <section class="box"
-                            style="height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+                            style="height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: space-between; border-width: 1px">
                             <header>
                                 <h3>Silver Plan</h3>
-                                <p>Perfect for new sellers starting their online journey.</p>
+                                <p>Basic plan.</p>
                             </header>
                             <ul>
                                 <li>List up to 50 products</li>
@@ -65,16 +65,16 @@
                             style="height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: space-between;">
                             <header>
                                 <h3>Gold Plan</h3>
-                                <p>For growing stores wanting more visibility and tools.</p>
+                                <p>For growing businesses.</p>
                             </header>
                             <ul>
                                 <li>List up to 100 products</li>
-                                <li>Featured placement in buyer app</li>
-                                <li>Sales & performance reports (limited)</li>
-                                <li>Email support - Get response within 6 hours</li>
+                                <li>All features of SILVER plan</li>
+                                <li>Featured in buyer search (priority placement)</li>
+                                <li>Gold Email support - Get response within 6 hours</li>
                             </ul>
                             <footer>
-                                <a href="javascript:void(0);" class="button special" onclick="showPlanModal()">₹499 /
+                                <a href="javascript:void(0);" class="button special" onclick="showPlanModal()">₹599 /
                                     month</a>
                             </footer>
                         </section>
@@ -85,17 +85,17 @@
                             style="height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: space-between;">
                             <header>
                                 <h3>Platinum Plan</h3>
-                                <p>Full-featured tools for professional retailers.</p>
+                                <p>For volume businesses.</p>
                             </header>
                             <ul>
-                                <li>Unlimited product listings</li>
-                                <li>Sales & performance reports</li>
+                                <li>List up to 1000 products</li>
+                                <li>All features of GOLD plan</li>
                                 <li>Dedicated Account Manager</li>
                                 <li>Early access to platform features</li>
-                                <li>Priority Email support - Get response within 2 hours</li>
+                                <li>Email support - Get priority response within 2 hours</li>
                             </ul>
                             <footer>
-                                <a href="javascript:void(0);" class="button" onclick="showPlanModal()">₹699 / month</a>
+                                <a href="javascript:void(0);" class="button" onclick="showPlanModal()">₹1199 / month</a>
                             </footer>
                         </section>
                     </div>
@@ -146,20 +146,141 @@
 
     <div id="planModal"
         style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.7); z-index:9999; justify-content:center; align-items:center;">
-        <div style="background:white; padding:30px; border-radius:10px; max-width:300px; text-align:center;">
-            <h3>Select Plan in App</h3>
-            <p>To complete your subscription, please open the YardStore mobile app.</p>
-            <button onclick="closeModal()" style="margin-top:15px;">OK</button>
+
+        <div id="loader" style="display:none;"></div>
+
+        <div id="modalContent" style="
+            background:white;
+            border-radius:10px;
+            width:90%;
+            max-width:600px;
+            max-height:80vh;
+            display:flex;
+            flex-direction:column;
+            position:relative;
+            overflow:hidden;   
+        ">
+            <!-- Request OTP -->
+            <!-- Verify OTP -->
+            <!-- Display Business and Plans -->
+            <!-- Buy Plan -->
         </div>
+
     </div>
 
-    <script>
-        function showPlanModal() {
-            document.getElementById("planModal").style.display = "flex";
+    <style>
+        #loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #eee;
+            border-top: 4px solid #000;
+            border-radius: 50%;
+            transform: translate(-50%, -50%) rotate(0deg);
+            animation: spin 1s linear infinite;
+            z-index: 10000;
+            /* box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.2); */
         }
+
+        @keyframes spin {
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        #modalContent {
+            position: relative;
+            width: 95%;
+            max-width: 600px;
+            max-height: 85vh;
+        }
+
+        #scrollArea {
+            padding-bottom: 140px;
+            /* prevent footer overlap */
+        }
+
+        #planModal {
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+        }
+    </style>
+
+    <script>
+        const BASE_URL = "https://yard-dev-api.spiralnetworks.in";
+
         function closeModal() {
             document.getElementById("planModal").style.display = "none";
         }
+
+        async function showPlanModal() {
+            const loader = document.getElementById("loader");
+
+            const isLocal = window.location.hostname === "127.0.0.1"
+                || window.location.hostname === "localhost";
+
+            try {
+                toggleLoader(true);
+
+                const headers = {
+                    "Content-Type": "application/json"
+                };
+
+                // ✅ DEV: attach token
+                if (isLocal) {
+                    const token = localStorage.getItem("access_token");
+                    if (token) {
+                        headers["Authorization"] = `Bearer ${token}`;
+                    }
+                }
+
+                const res = await fetch(BASE_URL + "/login/auth/status", {
+                    method: "GET",
+                    headers,
+                    credentials: isLocal ? "omit" : "include"
+                });
+
+                if (res.ok) {
+                    // ✅ User already logged in
+                    document.getElementById("planModal").style.display = "flex";
+                    await getEstablishments();
+                } else {
+                    // ❌ Not logged in
+                    showOtpForm();
+                }
+
+            } catch (err) {
+                console.error("Auth check failed", err);
+                showOtpForm();
+            }
+        }
+
+        function createCloseButton() {
+            const closeBtn = document.createElement("span");
+
+            closeBtn.innerHTML = "&times;";
+            closeBtn.style.position = "absolute";
+            closeBtn.style.top = "10px";
+            closeBtn.style.right = "15px";
+            closeBtn.style.fontSize = "22px";
+            closeBtn.style.cursor = "pointer";
+            closeBtn.style.fontWeight = "bold";
+
+            closeBtn.onclick = closeModal;
+
+            return closeBtn;
+        }
+
+        document.getElementById("planModal").onclick = function (e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        };
     </script>
 
     <!-- Scripts -->
@@ -227,6 +348,503 @@
                     side: 'left'
                 });
         }
+
+        async function requestOtp() {
+            const phone = document.getElementById("phoneInput").value;
+
+            const loader = document.getElementById("loader");
+
+            try {
+                // Show loader
+                toggleLoader(true);
+
+                const response = await fetch(BASE_URL + "/login/otp", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        contact: phone,
+                        platform: 'web',
+                        role: 'ROLE_VENDOR'
+                    })
+                });
+
+                const result = await response.json();
+
+                // Hide loader
+                toggleLoader(false);
+
+                if (result.status === "SUCCESS") {
+                    document.getElementById("otpSection").style.display = "block";
+                } else {
+                    alert(result.message || "Something went wrong");
+                }
+
+            } catch (error) {
+                toggleLoader(false);
+                console.error("Error:", error);
+                alert("Network error. Please try again.");
+            }
+        }
+
+        async function verifyOtp() {
+            const phone = document.getElementById("phoneInput").value;
+            const otp = document.getElementById("otpInput").value;
+
+            const loader = document.getElementById("loader");
+
+            const isLocal = window.location.hostname === "127.0.0.1"
+                || window.location.hostname === "localhost";
+
+            try {
+                // Show loader
+                toggleLoader(true);
+
+                const response = await fetch(BASE_URL + "/login", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        contact: phone,
+                        otp: otp,
+                        platform: 'web',
+                        role: 'ROLE_VENDOR'
+                    })
+                });
+
+                const result = await response.json();
+
+                // Hide loader
+                toggleLoader(false);
+
+                if (result.status === "SUCCESS") {
+
+                    // ✅ DEV: store token manually
+                    if (isLocal) {
+                        const token = result?.data?.access_token;
+                        if (token) {
+                            localStorage.setItem("access_token", token);
+                        }
+                    }
+
+                    document.getElementById("otpSection").style.display = "none";
+
+                    await getEstablishments(); // continue flow
+                } else {
+                    alert(result.message || "Something went wrong");
+                }
+
+            } catch (error) {
+                toggleLoader(false);
+                console.error("Error:", error);
+                alert("Network error. Please try again.");
+            }
+        }
+
+        async function getEstablishments() {
+            const loader = document.getElementById("loader");
+
+            const isLocal = window.location.hostname === "127.0.0.1"
+                || window.location.hostname === "localhost";
+
+            try {
+                toggleLoader(true);
+
+                const headers = {
+                    "Content-Type": "application/json"
+                };
+
+                // ✅ DEV: attach token
+                if (isLocal) {
+                    const token = localStorage.getItem("access_token");
+                    if (token) {
+                        headers["Authorization"] = `Bearer ${token}`;
+                    }
+                }
+
+                const response = await fetch(BASE_URL + "/establishment", {
+                    method: "GET",
+                    headers,
+                    credentials: isLocal ? "omit" : "include"
+                });
+
+                const result = await response.json();
+
+                toggleLoader(false);
+
+                if (result.status === "SUCCESS") {
+                    const container = document.getElementById("modalContent");
+                    container.innerHTML = "";
+
+                    container.appendChild(createCloseButton());
+
+                    const scrollArea = document.createElement("div");
+                    scrollArea.id = "scrollArea";
+                    scrollArea.style.flex = "1";
+                    scrollArea.style.overflowY = "auto";
+                    scrollArea.style.padding = "10px";
+                    scrollArea.style.paddingBottom = "120px";
+                    scrollArea.style.scrollBehavior = "smooth";
+
+                    const estWrapper = document.createElement("div");
+                    estWrapper.id = "establishmentSection";
+
+                    const planWrapper = document.createElement("div");
+                    planWrapper.id = "planSection";
+
+                    scrollArea.appendChild(estWrapper);
+                    scrollArea.appendChild(planWrapper);
+
+                    const footerWrapper = document.createElement("div");
+                    footerWrapper.id = "footerSection";
+
+                    container.appendChild(scrollArea);   // 👈 scrollable part
+                    container.appendChild(footerWrapper); // 👈 fixed footer
+
+                    // Render both
+                    renderEstablishments(result.data);
+                    await getPlans();
+                } else {
+                    alert(result.message || "Something went wrong");
+                }
+
+            } catch (error) {
+                toggleLoader(false);
+                console.error("Error:", error);
+                alert("Network error. Please try again.");
+            }
+        }
+
+        async function getPlans() {
+            const loader = document.getElementById("loader");
+
+            const isLocal = window.location.hostname === "127.0.0.1"
+                || window.location.hostname === "localhost";
+
+            try {
+                toggleLoader(true);
+
+                const headers = {
+                    "Content-Type": "application/json"
+                };
+
+                // ✅ DEV: attach token
+                if (isLocal) {
+                    const token = localStorage.getItem("access_token");
+                    if (token) {
+                        headers["Authorization"] = `Bearer ${token}`;
+                    }
+                }
+
+                const response = await fetch(BASE_URL + "/client_metadata/plan-details", {
+                    method: "GET",
+                    headers,
+                    credentials: isLocal ? "omit" : "include"
+                });
+
+                const result = await response.json();
+
+                toggleLoader(false);
+
+                if (result.status === "SUCCESS") {
+                    await renderPlans(result.data.plans)
+                } else {
+                    alert(result.message || "Something went wrong");
+                }
+
+            } catch (error) {
+                toggleLoader(false);
+                console.error("Error:", error);
+                alert("Network error. Please try again.");
+            }
+        }
+    </script>
+
+    <script>
+        function toggleLoader(show) {
+            const loader = document.getElementById("loader");
+            if (!loader) return;
+
+            loader.style.display = show ? "block" : "none";
+        }
+
+        function showOtpForm() {
+            const container = document.getElementById("modalContent");
+
+            container.innerHTML = `
+                <span onclick="closeModal()" 
+                    style="position:absolute; top:10px; right:15px; cursor:pointer; font-size:22px;">&times;</span>
+
+                <h3>Login Required</h3>
+
+                <input type="text" id="phoneInput" placeholder="Enter mobile number" style="width:100%; margin-bottom:10px;" />
+                <button onclick="requestOtp()">Request OTP</button>
+
+                <div id="otpSection" style="display:none; margin-top:10px;">
+                    <input type="text" id="otpInput" placeholder="Enter OTP" style="width:100%; margin-bottom:10px;" />
+                    <button onclick="verifyOtp()">Verify OTP</button>
+                </div>
+            `;
+
+            document.getElementById("planModal").style.display = "flex";
+        }
+
+        function renderEstablishments(establishments) {
+            const container = document.getElementById("establishmentSection");
+
+            container.innerHTML = "<h3>Select Business</h3>";
+
+            const content = document.createElement("div");
+            content.style.display = "flex";
+            content.style.overflowX = "auto";
+            content.style.gap = "15px";
+            content.style.padding = "10px";
+            content.style.scrollSnapType = "x mandatory";
+
+            establishments
+                .filter(est => est && est.id)
+                .forEach(est => {
+                    const div = document.createElement("div");
+                    div.className = "est-card";
+
+                    div.style.width = "260px";
+                    div.style.flex = "0 0 auto";
+                    div.style.border = "1px solid #ccc";
+                    div.style.padding = "10px";
+                    div.style.cursor = "pointer";
+                    div.style.scrollSnapAlign = "start";
+
+                    div.innerHTML = `
+                <div><b>${est.name || "Unnamed"}</b></div>
+                <div>${est.description || ""}</div>
+            `;
+
+                    div.onclick = () => selectEstablishment(est.id, div);
+
+                    content.appendChild(div);
+                });
+
+            container.appendChild(content);
+        }
+
+        function renderPlans(plans) {
+            const container = document.getElementById("planSection");
+
+            container.innerHTML = "<h3>Select Plan</h3>";
+
+            const content = document.createElement("div");
+            content.style.display = "flex";
+            content.style.overflowX = "auto";
+            content.style.gap = "15px";
+            content.style.padding = "10px";
+            content.style.scrollSnapType = "x mandatory";
+
+            plans
+                .filter(plan => plan && plan.id)
+                .forEach(plan => {
+                    const div = document.createElement("div");
+                    div.className = "plan-card";
+
+                    div.style.width = "260px";
+                    div.style.flex = "0 0 auto";
+                    div.style.border = "1px solid #ccc";
+                    div.style.borderRadius = "10px";
+                    div.style.padding = "15px";
+                    div.style.cursor = "pointer";
+                    div.style.background = "#fff";
+                    div.style.display = "flex";
+                    div.style.flexDirection = "column";
+                    div.style.justifyContent = "space-between";
+                    div.style.scrollSnapAlign = "start";
+
+                    const features = Array.isArray(plan.features) ? plan.features : [];
+
+                    div.innerHTML = `
+                        <div>
+                            <h4 style="margin-bottom:5px;">${plan.name || "Unnamed Plan"}</h4>
+
+                            ${plan.description ? `<p style="font-size:13px; color:#666;">${plan.description}</p>` : ""}
+
+                            <p style="margin:10px 0;">
+                                <b>${plan.monthlyPrice || "-"}</b>
+                                <span style="font-size:13px; color:#888;">
+                                    plus taxes
+                                </span>
+                            </p>
+
+                            ${plan.annualPrice ? `
+                                <p style="font-size:13px; color:#888;">
+                                    ${plan.annualPrice} plus taxes
+                                </p>
+                            ` : ""}
+
+                            ${features.length ? `
+                                <ul style="margin-top:10px; padding-left:18px; font-size:13px;">
+                                    ${features.slice(0, 4).map(f => `<li>${f}</li>`).join("")}
+                                </ul>
+                            ` : ""}
+                        </div>
+                    `;
+
+                    div.onclick = () => selectPlan(plan.id, div);
+
+                    content.appendChild(div);
+                });
+
+            container.appendChild(content);
+
+            renderFooter();
+        }
+
+        function renderFooter() {
+            const footer = document.getElementById("footerSection");
+
+            footer.innerHTML = "";
+
+            footer.style.position = "absolute";
+            footer.style.bottom = "0";
+            footer.style.left = "0";
+            footer.style.right = "0";
+            footer.style.background = "#000";
+            footer.style.padding = "10px";
+
+            // 👇 Create row container
+            const btnRow = document.createElement("div");
+            btnRow.style.display = "flex";
+            btnRow.style.gap = "10px";
+
+            const btnMonth = document.createElement("button");
+            btnMonth.id = "buyBtnMonth";
+            btnMonth.innerText = "Monthly";
+            btnMonth.disabled = true;
+
+            btnMonth.style.flex = "1";
+            btnMonth.style.padding = "12px";
+            btnMonth.style.color = "#fff";
+
+            btnMonth.onclick = () => buyPlan(1);
+
+            const btnAnnual = document.createElement("button");
+            btnAnnual.id = "buyBtnAnnual";
+            btnAnnual.innerText = "Yearly";
+            btnAnnual.disabled = true;
+
+            btnAnnual.style.flex = "1";
+            btnAnnual.style.padding = "12px";
+            btnAnnual.style.color = "#fff";
+
+            btnAnnual.onclick = () => buyPlan(12);
+
+            btnRow.appendChild(btnMonth);
+            btnRow.appendChild(btnAnnual);
+
+            footer.appendChild(btnRow);
+        }
+
+        let selectedEstablishmentId = null;
+        let selectedPlanId = null;
+
+        function updateBuyButton() {
+            const btnMonth = document.getElementById("buyBtnMonth");
+            const btnAnnual = document.getElementById("buyBtnAnnual");
+            if (btnMonth) {
+                btnMonth.disabled = !(selectedEstablishmentId && selectedPlanId);
+            }
+            if (btnAnnual) {
+                btnAnnual.disabled = !(selectedEstablishmentId && selectedPlanId);
+            }
+        }
+
+        function selectEstablishment(estId, element) {
+            selectedEstablishmentId = estId;
+
+            document.querySelectorAll(".est-card").forEach(el => {
+                el.style.border = "1px solid #ccc";
+            });
+
+            element.style.border = "2px solid green";
+
+            updateBuyButton();
+        }
+
+        function selectPlan(planId, element) {
+            selectedPlanId = planId;
+
+            document.querySelectorAll(".plan-card").forEach(el => {
+                el.style.border = "1px solid #ccc";
+            });
+
+            element.style.border = "2px solid green";
+
+            updateBuyButton();
+        }
+
+        async function buyPlan(qty) {
+            if (!selectedEstablishmentId) {
+                alert("Please select a business");
+                return;
+            }
+
+            if (!selectedPlanId) {
+                alert("Please select a plan");
+                return;
+            }
+
+            const loader = document.getElementById("loader");
+
+            const isLocal = window.location.hostname === "127.0.0.1"
+                || window.location.hostname === "localhost";
+
+            try {
+                toggleLoader(true);
+
+                const headers = {
+                    "Content-Type": "application/json"
+                };
+
+                // ✅ DEV: attach token
+                if (isLocal) {
+                    const token = localStorage.getItem("access_token");
+                    if (token) {
+                        headers["Authorization"] = `Bearer ${token}`;
+                    }
+                }
+
+                const response = await fetch(BASE_URL + `/establishment/membership?id=${selectedEstablishmentId}&qty=${qty}&plan=${selectedPlanId}&notify=false`, {
+                    method: "GET",
+                    headers,
+                    credentials: isLocal ? "omit" : "include"
+                });
+
+                const result = await response.json();
+
+                toggleLoader(false);
+
+                if (result.status === "SUCCESS") {
+                    if (result.data) {
+                        alert(
+                            "Your subscription is almost complete! 🎉\n\n" +
+                            "Please complete the payment in the new tab. " +
+                            "Once done, open your seller app to see your updated subscription."
+                        );
+
+                        window.open(result.data, "_blank");
+                    } else {
+                        alert("Plan purchased successfully, but no payment link was returned.");
+                    }
+                } else {
+                    alert(result.message || "Purchase failed");
+                }
+
+            } catch (err) {
+                toggleLoader(false);
+                console.error(err);
+                alert("Something went wrong. Please try again");
+            }
+        }
+
     </script>
 
 </body>
