@@ -219,9 +219,18 @@
         }
 
         function getCsrfToken() {
+            // Debug: Log all cookies to see what's available
+            console.log("All cookies:", document.cookie);
+
             const match = document.cookie.match(/XSRF-TOKEN=([^;]+)/);
-            return match ? match[1] : null;
+            const token = match ? decodeURIComponent(match[1]) : null;
+
+            // Debug: Log the CSRF token value
+            console.log("CSRF token:", token);
+
+            return token;
         }
+
 
         async function showPlanModal() {
             const loader = document.getElementById("loader");
@@ -415,6 +424,7 @@
                         "Content-Type": "application/json",
                         "X-XSRF-TOKEN": getCsrfToken()
                     },
+                    credentials: isLocal ? "omit" : "include",
                     body: JSON.stringify({
                         contact: phone,
                         otp: otp,
