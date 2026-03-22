@@ -842,12 +842,12 @@
                     if (result.data) {
                         alert(
                             "Your subscription is almost complete! 🎉\n\n" +
-                            "Please complete the payment in the new tab. " +
+                            "Please complete the payment. " +
                             "Once done, open your seller app to see your updated subscription."
                         );
 
                         // window.open(result.data, "_blank");
-                        window.location.href(result.data);
+                        window.location.href = result.data;
                     } else {
                         alert("Plan purchased successfully, but no payment link was returned.");
                     }
