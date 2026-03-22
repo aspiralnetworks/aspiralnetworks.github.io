@@ -846,7 +846,8 @@
                             "Once done, open your seller app to see your updated subscription."
                         );
 
-                        window.open(result.data, "_blank");
+                        // window.open(result.data, "_blank");
+                        window.location.href(result.data);
                     } else {
                         alert("Plan purchased successfully, but no payment link was returned.");
                     }
