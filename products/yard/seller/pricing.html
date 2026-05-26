@@ -374,7 +374,8 @@
                 const response = await fetch(BASE_URL + "/login/otp", {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
+                        "role": "ROLE_VENDOR"
                     },
                     body: JSON.stringify({
                         contact: phone,
@@ -418,7 +419,8 @@
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        "X-XSRF-TOKEN": getCsrfToken()
+                        "X-XSRF-TOKEN": getCsrfToken(),
+                        "role": "ROLE_VENDOR"
                     },
                     credentials: isLocal ? "omit" : "include",
                     body: JSON.stringify({
