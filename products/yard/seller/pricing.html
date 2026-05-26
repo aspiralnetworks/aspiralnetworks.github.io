@@ -471,7 +471,8 @@
 
                 const headers = {
                     "Content-Type": "application/json",
-                    "X-XSRF-TOKEN": getCsrfToken()
+                    "X-XSRF-TOKEN": getCsrfToken(),
+                    "role": "ROLE_VENDOR"
                 };
 
                 // ✅ DEV: attach token
@@ -835,7 +836,8 @@
 
                 const headers = {
                     "Content-Type": "application/json",
-                    "X-XSRF-TOKEN": getCsrfToken()
+                    "X-XSRF-TOKEN": getCsrfToken(),
+                    "role": "ROLE_VENDOR"
                 };
 
                 // ✅ DEV: attach token
