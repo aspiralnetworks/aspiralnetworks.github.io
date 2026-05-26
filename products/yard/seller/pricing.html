@@ -246,6 +246,7 @@
                     const token = localStorage.getItem("access_token");
                     if (token) {
                         headers["Authorization"] = `Bearer ${token}`;
+                        headers["role"] = "ROLE_VENDOR";
                     }
                 }
 
@@ -476,6 +477,7 @@
                     const token = localStorage.getItem("access_token");
                     if (token) {
                         headers["Authorization"] = `Bearer ${token}`;
+                        headers["role"] = "ROLE_VENDOR";
                     }
                 }
 
@@ -551,6 +553,7 @@
                     const token = localStorage.getItem("access_token");
                     if (token) {
                         headers["Authorization"] = `Bearer ${token}`;
+                        headers["role"] = "ROLE_VENDOR";
                     }
                 }
 
@@ -838,6 +841,7 @@
                     const token = localStorage.getItem("access_token");
                     if (token) {
                         headers["Authorization"] = `Bearer ${token}`;
+                        headers["role"] = "ROLE_VENDOR";
                     }
                 }
 
