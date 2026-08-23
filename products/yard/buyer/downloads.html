@@ -8,6 +8,7 @@
 
     <!-- Updated asset paths -->
     <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/nova-grid.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <noscript>
         <link rel="stylesheet" href="/assets/css/noscript.css" />
@@ -23,93 +24,95 @@
         <!-- Main -->
         <article id="main">
 
-            <section class="wrapper style1 container special">
-                <img src="/assets/images/YardBuy.JPG" style="width: 100px; height: auto; border-radius: 20px;"
-                    alt="buyer app">
+            <!-- ============================== APP INTRO ============================== -->
+            <section class="ng-app-intro ng-container">
 
-                <h2>Download the <strong>Yard Buyer App</strong></h2>
-                <p>Start shopping online, track orders, and manage your wishlist with the Yard Buyer App.</p>
-            </section>
+                <span class="ng-eyebrow">Yard Buyer App</span>
+                <h1>Download the Yard Buyer App</h1>
+                <p class="ng-lead">Start shopping online, track orders, and manage your wishlist with the Yard
+                    Buyer App.</p>
+                <br>
 
-            <header class="special container">
-                <span class="icon solid fa-download"></span>
-            </header>
-
-            <!-- Download Section -->
-            <section class="wrapper style1 container special">
-
-                <div class="row gtr-150">
-
-                    <div class="col-6 col-12-narrower">
-                        <section>
-                            <i class="fa-brands fa-android fa-3x"></i>
-                            <header>
-                                <h3>Android Download</h3>
-                            </header>
-                            <p>
-                                Download the Yard Buyer App for Android devices. Easy setup, fast browsing, and secure
-                                payments.
-                            </p>
-                            <footer>
-                                <ul class="buttons">
-                                    <li><a href="https://play.google.com/store/apps/details?id=in.spiralnetworks.yardbuy" class="button ">Download</a></li>
-                                </ul>
-                            </footer>
-                        </section>
-                    </div>
-
-                    <div class="col-6 col-12-narrower">
-                        <section>
-                            <i class="fa-brands fa-apple fa-3x"></i>
-                            <header>
-                                <h3>iOS Download</h3>
-                            </header>
-                            <p>
-                                The iOS version of the Yard Buyer App will be available soon. Stay tuned for updates.
-                            </p>
-                            <footer>
-                                <ul class="buttons">
-                                    <li><a href="https://apps.apple.com/app/id6756648112" class="button ">Download</a></li>
-                                </ul>
-                            </footer>
-                        </section>
-                    </div>
-
+                <div class="ng-frame">
+                    <img src="/assets/images/YardBuy.JPG" alt="Yard Buyer App">
                 </div>
-
             </section>
 
-            <!-- Features Section -->
-            <section class="wrapper style2 container special-alt">
-                <div class="row gtr-50">
-
-                    <div class="col-8 col-12-narrower">
-                        <header>
-                            <h2>Why Buyers Choose <strong>Yard Services</strong></h2>
-                        </header>
-
-                        <ul>
-                            <li>Simple account setup and secure login</li>
-                            <li>Browse products by categories or nearby stores</li>
-                            <li>Place and track orders in real-time</li>
-                            <li>Secure payments with multiple options</li>
-                            <li>Save favorites and manage wishlist</li>
-                            <li>Receive notifications for discounts and order updates</li>
-                            <li>Access buyer support directly in-app</li>
-                        </ul>
+            <!-- ============================== DOWNLOAD CARDS ============================== -->
+            <section class="ng-section" style="padding-top:0;">
+                <div class="ng-container ng-download-grid">
+                    <div class="ng-download-card">
+                        <div class="ng-download-icon"><i class="fa-brands fa-android"></i></div>
+                        <h3>Android Download</h3>
+                        <p>Download the Yard Buyer App for Android devices. Easy setup, fast browsing, and secure
+                            payments.</p>
+                        <a href="https://play.google.com/store/apps/details?id=in.spiralnetworks.yardbuy"
+                            class="button primary">Download</a>
                     </div>
-
-                    <div class="col-4 col-12-narrower imp-narrower">
-                        <ul class="featured-icons">
-                            <li><span class="icon solid fa-check-circle"></span></li>
-                            <li><span class="icon solid fa-shopping-cart"></span></li>
-                            <li><span class="icon solid fa-money-bill-wave"></span></li>
-                            <li><span class="icon solid fa-map-marker-alt"></span></li>
-                            <li><span class="icon solid fa-bell"></span></li>
-                            <li><span class="icon solid fa-headset"></span></li>
-                        </ul>
+                    <div class="ng-download-card">
+                        <div class="ng-download-icon"><i class="fa-brands fa-apple"></i></div>
+                        <h3>iOS Download</h3>
+                        <p>The iOS version of the Yard Buyer App will be available soon. Stay tuned for updates.</p>
+                        <a href="https://apps.apple.com/app/id6756648112" class="button primary">Download</a>
                     </div>
+                </div>
+            </section>
 
+            <!-- ============================== WHY BUYERS CHOOSE YARD ============================== -->
+            <section class="ng-section" style="padding-top:0;">
+                <div class="ng-container">
+                    <div class="ng-split-dark">
+                        <div class="ng-split">
+                            <div>
+                                <span class="ng-eyebrow">Built for buyers</span>
+                                <h2>Why buyers choose Yard Services</h2>
+                                <ul class="ng-checklist">
+                                    <li><svg viewBox="0 0 20 20" fill="none">
+                                            <path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="1.8"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>Simple account setup and secure login</li>
+                                    <li><svg viewBox="0 0 20 20" fill="none">
+                                            <path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="1.8"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>Browse products by categories or nearby stores</li>
+                                    <li><svg viewBox="0 0 20 20" fill="none">
+                                            <path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="1.8"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>Place and track orders in real-time</li>
+                                    <li><svg viewBox="0 0 20 20" fill="none">
+                                            <path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="1.8"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>Secure payments with multiple options</li>
+                                    <li><svg viewBox="0 0 20 20" fill="none">
+                                            <path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="1.8"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>Save favorites and manage wishlist</li>
+                                    <li><svg viewBox="0 0 20 20" fill="none">
+                                            <path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="1.8"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>Receive notifications for discounts and order updates</li>
+                                    <li><svg viewBox="0 0 20 20" fill="none">
+                                            <path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="1.8"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>Access buyer support directly in-app</li>
+                                </ul>
+                            </div>
+                            <div class="ng-chip-grid">
+                                <div class="ng-chip"><span class="icon solid fa-check-circle"></span><span
+                                        class="ng-chip-label">Verified</span></div>
+                                <div class="ng-chip"><span class="icon solid fa-shopping-cart"></span><span
+                                        class="ng-chip-label">Shopping</span></div>
+                                <div class="ng-chip"><span class="icon solid fa-money-bill-wave"></span><span
+                                        class="ng-chip-label">Payments</span></div>
+                                <div class="ng-chip"><span class="icon solid fa-map-marker-alt"></span><span
+                                        class="ng-chip-label">Nearby stores</span></div>
+                                <div class="ng-chip"><span class="icon solid fa-bell"></span><span
+                                        class="ng-chip-label">Notifications</span></div>
+                                <div class="ng-chip"><span class="icon solid fa-headset"></span><span
+                                        class="ng-chip-label">Support</span></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 

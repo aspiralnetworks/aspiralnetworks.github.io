@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <!--
-    Twenty by HTML5 UP
-    html5up.net | @ajlkn
-    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	Twenty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
 
@@ -11,6 +11,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="/assets/css/nova-grid.css" />
 	<noscript>
 		<link rel="stylesheet" href="/assets/css/noscript.css" />
 	</noscript>
@@ -25,43 +26,90 @@
 		<!-- Main -->
 		<article id="main">
 
-			<header class="special container">
-				<span class="icon solid fa-address-card"></span>
-				<h2>Contact <strong>Aspiral Networks Pvt. Ltd.</strong></h2>
-				<p>You may contact us using the information below:</p>
-				<p>Last updated on 30-11-2025</p>
-			</header>
-
-			<!-- Contact Details -->
-			<section class="wrapper style4 container">
-
-				<div class="content">
-					<section>
-						<header>
-							<h3>Head Office</h3>
-						</header>
-						<p>
-							Aspiral Networks Pvt. Ltd.<br>
-							Anand Bhawan, behind, Palm View Hospital, B.V. College, Phulwari, Patna, Bihar, PIN: 800014
-						</p>
-						<p>Email: <a href="mailto:contact@spiralnetworks.in">contact@spiralnetworks.in</a><br>
-						</p>
-					</section>
-
-					<section>
-						<header>
-							<h3>Yard Services Support</h3>
-						</header>
-						<p>
-							For queries related to Yard Seller or Buyer App, please contact our support team:
-						</p>
-						<p>Email: <a
-								href="mailto:yard-services@spiralnetworks.in">yard-services@spiralnetworks.in</a><br>
-						</p>
-					</section>
-				</div>
-
+			<section class="ng-page-header ng-container">
+				<span class="ng-eyebrow">Contact</span>
+				<h1>Get in touch with Aspiral Networks.</h1>
+				<p class="ng-lead">You can reach us using the details below — we'll route your message to the
+					right team.</p>
+				<p class="ng-meta">Last updated on 30-11-2025</p>
 			</section>
+
+			<section class="ng-section" style="padding-top:0;">
+				<div class="ng-container ng-contact-grid">
+					<div>
+						<div class="ng-contact-card" style="margin-bottom:20px;">
+							<div class="ng-contact-icon"><span class="icon solid fa-building"></span></div>
+							<h3>Head Office</h3>
+							<p>
+								Aspiral Networks Pvt. Ltd.<br>
+								Anand Bhawan, behind Palm View Hospital, B.V. College, Phulwari, Patna, Bihar,
+								PIN: 800014
+							</p>
+							<a href="mailto:contact@spiralnetworks.in" class="ng-email">
+								<span class="icon solid fa-envelope"></span>&nbsp; contact@spiralnetworks.in
+							</a>
+						</div>
+
+						<div class="ng-contact-card">
+							<div class="ng-contact-icon"><span class="icon solid fa-headset"></span></div>
+							<h3>Yard Services Support</h3>
+							<p>
+								For queries related to the Yard Seller or Buyer App, our support team is here
+								to help.
+							</p>
+							<a href="mailto:yard-services@spiralnetworks.in" class="ng-email">
+								<span class="icon solid fa-envelope"></span>&nbsp; yard-services@spiralnetworks.in
+							</a>
+						</div>
+					</div>
+
+					<div class="ng-form-card">
+						<form action="https://formsubmit.co/contact@spiralnetworks.in" method="POST">
+							<!-- Spam protection: honeypot field, invisible to real visitors -->
+							<input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+							<!-- Skips FormSubmit's captcha page after submit -->
+							<input type="hidden" name="_captcha" value="true">
+							<input type="hidden" name="_subject"
+								value="New message from spiralnetworks.in contact form">
+							<input type="hidden" name="_next" value="https://spiralnetworks.in/contact-thank-you.html">
+
+							<div class="ng-form-row">
+								<label for="name">Full name</label>
+								<input id="name" name="name" type="text" placeholder="Your name" required>
+							</div>
+							<div class="ng-form-two">
+								<div class="ng-form-row">
+									<label for="email">Email</label>
+									<input id="email" name="email" type="email" placeholder="you@example.com" required>
+								</div>
+								<div class="ng-form-row">
+									<label for="phone">Phone (optional)</label>
+									<input id="phone" name="phone" type="tel" placeholder="+91">
+								</div>
+							</div>
+							<div class="ng-form-row">
+								<label for="topic">I'm reaching out about</label>
+								<select id="topic" name="topic">
+									<option>General enquiry</option>
+									<option>Yard Seller App</option>
+									<option>Yard Buyer App</option>
+									<option>Partnership enquiry</option>
+									<option>Something else</option>
+								</select>
+							</div>
+							<div class="ng-form-row">
+								<label for="message">Message</label>
+								<textarea id="message" name="message" placeholder="Tell us a bit about what you need"
+									required></textarea>
+							</div>
+							<button type="submit" class="button primary fit">Send message</button>
+							<p class="ng-form-note">Messages sent through this form go straight to our inbox. We
+								typically respond within 1–2 business days.</p>
+						</form>
+					</div>
+				</div>
+			</section>
+
 
 		</article>
 

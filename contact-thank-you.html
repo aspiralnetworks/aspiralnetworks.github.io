@@ -7,7 +7,7 @@
 <html>
 
 <head>
-	<title>Yard Services – Privacy Policy | Aspiral Networks Pvt. Ltd.</title>
+	<title>Message Sent | Aspiral Networks Pvt. Ltd.</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="/assets/css/main.css" />
@@ -17,14 +17,36 @@
 	</noscript>
 </head>
 
-<body class="is-preload">
+<body class="no-sidebar is-preload">
 	<div id="page-wrapper">
 
 		<!-- Header -->
 		<div id="header-placeholder"></div>
 
 		<!-- Main -->
-		<div id="main-placeholder"></div>
+		<article id="main">
+
+			<section class="ng-section">
+				<div class="ng-container ng-narrow">
+					<div class="ng-banner">
+						<div
+							style="width:56px;height:56px;border-radius:50%;background:var(--ng-accent);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;font-size:24px;">
+							<span class="icon solid fa-check"></span>
+						</div>
+						<h2>Thanks — your message is on its way.</h2>
+						<p>We've received what you sent and typically respond within 1–2 business days. If it's
+							urgent, you can also reach us directly at <a
+								href="mailto:contact@spiralnetworks.in">contact@spiralnetworks.in</a>.</p>
+					</div>
+
+					<div style="text-align:center;margin-top:36px;">
+						<a href="/index.html" class="button primary">Back to home</a>
+						<a href="/contact.html" class="button" style="margin-left:12px;">Send another message</a>
+					</div>
+				</div>
+			</section>
+
+		</article>
 
 		<!-- Footer -->
 		<div id="footer-placeholder"></div>
@@ -47,15 +69,6 @@
 			.then(res => res.text())
 			.then(html => {
 				document.getElementById('header-placeholder').innerHTML = html;
-				initHeaderScripts();
-				setupMobileNav();
-			});
-
-		// Load tnc main from same folder
-		fetch('/products/yard/privacy-policy-main.html')
-			.then(res => res.text())
-			.then(html => {
-				document.getElementById('main-placeholder').innerHTML = html;
 				initHeaderScripts();
 				setupMobileNav();
 			});

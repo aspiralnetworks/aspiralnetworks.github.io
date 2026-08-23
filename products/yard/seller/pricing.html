@@ -8,6 +8,7 @@
 
     <!-- Updated asset paths -->
     <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/nova-grid.css" />
     <noscript>
         <link rel="stylesheet" href="/assets/css/noscript.css" />
     </noscript>
@@ -22,119 +23,134 @@
         <!-- Main -->
         <article id="main">
 
-            <header class="special container">
-                <span class="icon solid fa-tags"></span>
-                <h2><strong>Yard Seller Pricing</strong></h2>
-                <p>Simple, transparent, and designed to help local retailers grow.</p>
-            </header>
+            <!-- ============================== PAGE HEADER ============================== -->
+            <section class="ng-page-header ng-container">
+                <span class="ng-eyebrow">Yard Seller App</span>
+                <h1>Yard Seller Pricing</h1>
+                <p class="ng-lead">Simple, transparent, and designed to help local retailers grow.</p>
+            </section>
 
-            <section class="wrapper style1 container">
-                <header>
-                    <h3>Subscription Plans</h3>
-                </header>
-                <p>
-                    Yard Seller App offers flexible subscription plans designed to fit every size of retail
-                    business.
-                </p>
+            <!-- ============================== PRICING CARDS ============================== -->
+            <section class="ng-section" style="padding-top:0;">
+                <div class="ng-container">
+                    <div class="ng-section-head">
+                        <span class="ng-eyebrow slate">Subscription Plans</span>
+                        <h2>Choose the plan that fits your store</h2>
+                        <p>Yard Seller App offers flexible subscription plans designed to fit every size of retail
+                            business.</p>
+                    </div>
 
-                <!-- Pricing -->
-                <div class="row aln-center" style="display: flex; flex-wrap: wrap; margin-bottom: 2.5rem;">
-
-                    <div class="col-3 col-12-mobile" style="display: flex;">
-                        <section class="box"
-                            style="height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: space-between; border-width: 1px">
-                            <header>
+                    <div class="ng-pricing-grid">
+                        <div class="ng-pricing-card">
+                            <div>
                                 <h3>Silver Plan</h3>
-                                <p>Basic plan.</p>
-                            </header>
-                            <ul>
-                                <li>List up to 600 products</li>
-                                <li>Order management</li>
-                                <li>Basic analytics</li>
-                                <li>No featured placement</li>
-                            </ul>
-                            <footer>
-                                <a href="javascript:void(0);" class="button alt" onclick="showPlanModal()">₹1200 /
-                                    month</a>
-                            </footer>
-                        </section>
-                    </div>
+                                <p class="ng-pricing-tagline">Basic plan.</p>
+                                <div class="ng-pricing-price">₹1200<span> / month</span></div>
+                                <ul class="ng-pricing-list">
+                                    <li>List up to 600 products</li>
+                                    <li>Order management</li>
+                                    <li>Basic analytics</li>
+                                    <li>No featured placement</li>
+                                </ul>
+                            </div>
+                            <a href="javascript:void(0);" class="button primary fit" onclick="showPlanModal()">Choose
+                                Silver</a>
+                        </div>
 
-                    <div class="col-3 col-12-mobile" style="display: flex;">
-                        <section class="box"
-                            style="height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: space-between;">
-                            <header>
+                        <div class="ng-pricing-card featured">
+                            <span class="ng-pricing-badge">Most popular</span>
+                            <div>
                                 <h3>Gold Plan</h3>
-                                <p>For growing businesses.</p>
-                            </header>
-                            <ul>
-                                <li>List up to 5000 products</li>
-                                <li>All features of SILVER plan</li>
-                                <li>Featured in buyer search (priority placement)</li>
-                                <li>Gold Email support - Get response within 6 hours</li>
-                            </ul>
-                            <footer>
-                                <a href="javascript:void(0);" class="button special" onclick="showPlanModal()">₹2499 /
-                                    month</a>
-                            </footer>
-                        </section>
-                    </div>
+                                <p class="ng-pricing-tagline">For growing businesses.</p>
+                                <div class="ng-pricing-price">₹2499<span> / month</span></div>
+                                <ul class="ng-pricing-list">
+                                    <li>List up to 5000 products</li>
+                                    <li>All features of SILVER plan</li>
+                                    <li>Featured in buyer search (priority placement)</li>
+                                    <li>Gold Email support — response within 6 hours</li>
+                                </ul>
+                            </div>
+                            <a href="javascript:void(0);" class="button primary fit" onclick="showPlanModal()">Choose
+                                Gold</a>
+                        </div>
 
-                    <div class="col-3 col-12-mobile" style="display: flex;">
-                        <section class="box"
-                            style="height: 100%; width: 100%; display: flex; flex-direction: column; justify-content: space-between;">
-                            <header>
+                        <div class="ng-pricing-card">
+                            <div>
                                 <h3>Platinum Plan</h3>
-                                <p>For volume businesses.</p>
-                            </header>
-                            <ul>
-                                <li>List up to 10000 products</li>
-                                <li>All features of GOLD plan</li>
-                                <li>Dedicated Account Manager</li>
-                                <li>Early access to platform features</li>
-                                <li>Email support - Get priority response within 2 hours</li>
-                            </ul>
-                            <footer>
-                                <a href="javascript:void(0);" class="button" onclick="showPlanModal()">₹3999 / month</a>
-                            </footer>
-                        </section>
+                                <p class="ng-pricing-tagline">For volume businesses.</p>
+                                <div class="ng-pricing-price">₹3999<span> / month</span></div>
+                                <ul class="ng-pricing-list">
+                                    <li>List up to 10000 products</li>
+                                    <li>All features of GOLD plan</li>
+                                    <li>Dedicated Account Manager</li>
+                                    <li>Early access to platform features</li>
+                                    <li>Priority email support — response within 2 hours</li>
+                                </ul>
+                            </div>
+                            <a href="javascript:void(0);" class="button primary fit" onclick="showPlanModal()">Choose
+                                Platinum</a>
+                        </div>
                     </div>
                 </div>
+            </section>
 
+            <!-- ============================== FEES + INCLUDED ============================== -->
+            <section class="ng-section" style="padding-top:0;">
+                <div class="ng-container ng-narrow ng-legal-body">
 
-                <!-- Fees Section -->
-                <section>
-                    <header>
-                        <h3>Platform & Transaction Fees</h3>
-                    </header>
+                    <section>
+                        <h3>Platform &amp; Transaction Fees</h3>
+                        <p>Yard keeps fees transparent and straightforward.</p>
+                        <ul>
+                            <li><strong>Platform Fee:</strong> Charged to buyers during checkout.</li>
+                            <li><strong>Seller Subscription:</strong> Monthly plan chosen by the seller.</li>
+                            <li><strong>Payment Gateway Charges:</strong> Standard UPI/card/bank fees apply.</li>
+                        </ul>
+                    </section>
 
-                    <p>Yard keeps fees transparent and straightforward.</p>
+                    <section>
+                        <h3>What's Included for Free</h3>
+                        <ul class="ng-checklist" style="margin-top:16px;">
+                            <li><svg viewBox="0 0 20 20" fill="none">
+                                    <path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="1.8"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>Seller KYC verification</li>
+                            <li><svg viewBox="0 0 20 20" fill="none">
+                                    <path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="1.8"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>Shop verification</li>
+                            <li><svg viewBox="0 0 20 20" fill="none">
+                                    <path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="1.8"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>Bank account verification</li>
+                            <li><svg viewBox="0 0 20 20" fill="none">
+                                    <path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="1.8"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>Unlimited withdrawals (anytime)</li>
+                            <li><svg viewBox="0 0 20 20" fill="none">
+                                    <path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="1.8"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>Listing review &amp; approval</li>
+                            <li><svg viewBox="0 0 20 20" fill="none">
+                                    <path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="1.8"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>Secure online payments</li>
+                            <li><svg viewBox="0 0 20 20" fill="none">
+                                    <path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="1.8"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>Order tracking &amp; notifications</li>
+                            <li><svg viewBox="0 0 20 20" fill="none">
+                                    <path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="1.8"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>Sales analytics dashboard</li>
+                            <li><svg viewBox="0 0 20 20" fill="none">
+                                    <path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="1.8"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>Catalog management tools</li>
+                        </ul>
+                    </section>
 
-                    <ul>
-                        <li><strong>Platform Fee:</strong> Charged to buyers during checkout.</li>
-                        <li><strong>Seller Subscription:</strong> Monthly plan chosen by the seller.</li>
-                        <li><strong>Payment Gateway Charges:</strong> Standard UPI/card/bank fees apply.</li>
-                    </ul>
-                </section>
-
-                <!-- Additional Features -->
-                <section>
-                    <header>
-                        <h3>What’s Included for Free</h3>
-                    </header>
-
-                    <ul>
-                        <li>Seller KYC verification</li>
-                        <li>Shop verification</li>
-                        <li>Bank account verification</li>
-                        <li>Unlimited withdrawals (anytime)</li>
-                        <li>Listing review & approval</li>
-                        <li>Secure online payments</li>
-                        <li>Order tracking & notifications</li>
-                        <li>Sales analytics dashboard</li>
-                        <li>Catalog management tools</li>
-                    </ul>
-                </section>
+                </div>
             </section>
 
         </article>

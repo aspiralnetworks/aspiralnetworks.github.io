@@ -11,11 +11,11 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="/assets/css/nova-grid.css" />
 	<noscript>
 		<link rel="stylesheet" href="/assets/css/noscript.css" />
 	</noscript>
 </head>
-
 
 <body class="index is-preload">
 	<div id="page-wrapper">
@@ -23,137 +23,193 @@
 		<!-- Header -->
 		<div id="header-placeholder"></div>
 
-		<!-- Banner -->
-		<section id="banner">
-			<div class="inner" style="text-align: start;">
-				<header>
-					<h2 style="text-align: center;">Empowering India's Retail Future</h2>
-				</header>
-
-				<p>
-					Aspiral Networks Pvt. Ltd. is a technology-driven company dedicated to transforming India’s retail
-					ecosystem.
-					Through innovative digital solutions, we help Kirana stores, small retailers, and neighbourhood
-					businesses grow in a modern commerce environment.
-				</p>
-				<br>
-				<p>
-					Our flagship platform, Yard, brings traditional retail into the digital age through two
-					integrated mobile applications — a Seller App for merchants and a Buyer App for customers.
-				</p>
-
+		<!-- ============================== HERO ============================== -->
+		<section class="ng-hero">
+			<div class="ng-container ng-hero-grid">
 				<div>
-					<img src="/assets/images/cart.jpg" style="width: 200px; height: auto;" alt="cart">
+					<span class="ng-eyebrow">Aspiral Networks Pvt. Ltd.</span>
+					<h1>Empowering India's <em>retail future.</em></h1>
+					<p class="ng-lead">
+						We're a technology-driven company transforming India's retail ecosystem — helping Kirana
+						stores, small retailers and neighbourhood businesses grow through digital tools built for
+						how they actually work.
+					</p>
+					<div class="ng-hero-actions">
+						<a href="/about-us.html" class="button primary scrolly">Learn More</a>
+						<a href="/products/yard/buyer/downloads.html" class="button">Download the Buyer App</a>
+					</div>
 
+					<!-- Replace these placeholder figures with your real numbers -->
+					<div class="ng-hero-proof">
+						<div><strong>1,000+</strong><span>KIRANA STORES ONBOARDED</span></div>
+						<div><strong>15+</strong><span>CITIES ACROSS INDIA</span></div>
+						<div><strong>100%</strong><span>KYC-VERIFIED SELLERS</span></div>
+					</div>
 				</div>
 
-				<footer>
-					<ul class="buttons stacked">
-						<li><a href="/about-us.html" class="button fit scrolly">Learn More</a></li>
-					</ul>
-				</footer>
+				<div class="ng-hero-visual" aria-hidden="true">
+					<svg viewBox="0 0 400 400">
+						<line class="ng-node-line active" x1="200" y1="200" x2="200" y2="70" />
+						<line class="ng-node-line" x1="200" y1="200" x2="90" y2="270" />
+						<line class="ng-node-line active" x1="200" y1="200" x2="310" y2="270" />
+						<line class="ng-node-line" x1="200" y1="200" x2="320" y2="120" />
+						<line class="ng-node-line" x1="200" y1="200" x2="75" y2="140" />
+						<line class="ng-node-line" x1="90" y1="270" x2="200" y2="330" />
+						<line class="ng-node-line" x1="310" y1="270" x2="200" y2="330" />
+						<circle class="ng-pulse-ring" cx="200" cy="200" r="10" />
+						<circle class="ng-node-dot hub" cx="200" cy="200" r="11" />
+						<circle class="ng-node-dot pulse" cx="200" cy="70" r="7" />
+						<circle class="ng-node-dot" cx="90" cy="270" r="7" />
+						<circle class="ng-node-dot pulse" cx="310" cy="270" r="7" />
+						<circle class="ng-node-dot" cx="320" cy="120" r="6" />
+						<circle class="ng-node-dot" cx="75" cy="140" r="6" />
+						<circle class="ng-node-dot" cx="200" cy="330" r="6" />
+					</svg>
+				</div>
 			</div>
 		</section>
 
 		<!-- Main -->
 		<article id="main">
 
-			<!-- Section: What We Do -->
-			<header class="special container">
-				<span class="icon solid fa-cogs"></span>
-				<h2>Building Technology for the Next Generation of Retail</h2>
-				<p>
-					We create powerful, scalable tools that enable small retailers to manage, grow, and digitize their
-					business with ease.
-				</p>
-			</header>
-
-			<!-- Features Block -->
-			<section class="wrapper style2 container special-alt">
-				<div class="row gtr-50">
-					<div class="col-8 col-12-narrower">
-
-						<header>
-							<h2>A smarter way to run and grow your retail business</h2>
-						</header>
-
-						<p>
-							With Yard Services, local retailers can manage their entire store digitally—from product
-							listings to payments, customer orders, delivery, and business insights.
-						</p>
-
-						<ul>
-							<li>Take your store online in minutes</li>
-							<li>Manage products, categories, and inventory easily</li>
-							<li>Accept secure online payments</li>
-							<li>Get verified through KYC, shop verification & bank verification</li>
-							<li>Withdraw earnings anytime</li>
-							<li>Track performance with real-time sales reports</li>
-							<li>Upload product photos & maintain a digital catalog</li>
-							<li>All listings verified by Aspiral Networks for trust & safety</li>
-						</ul>
-
-					</div>
-
-					<div class="col-4 col-12-narrower imp-narrower">
-						<ul class="featured-icons">
-							<li><span class="icon solid fa-mobile-alt"></span></li>
-							<li><span class="icon solid fa-store"></span></li>
-							<li><span class="icon solid fa-credit-card"></span></li>
-							<li><span class="icon solid fa-chart-bar"></span></li>
-							<li><span class="icon solid fa-camera"></span></li>
-							<li><span class="icon solid fa-shield-alt"></span></li>
-						</ul>
+			<!-- ============================== WHAT WE DO (intro) ============================== -->
+			<section class="ng-section ng-band">
+				<div class="ng-container">
+					<div class="ng-section-head center">
+						<span class="ng-eyebrow slate">What we do</span>
+						<h2>Building technology for the next generation of retail.</h2>
+						<p>We create powerful, scalable tools that enable small retailers to manage, grow and
+							digitize their business with ease.</p>
 					</div>
 				</div>
 			</section>
 
-			<!-- Section: Buyer App -->
-			<section class="wrapper style1 container special">
-				<div class="row">
-					<div class="col-12 col-12-narrower">
-						<section>
-							<!-- <span class="icon solid featured fa-shopping-cart"></span> -->
-							<img src="assets/images/YardBuy.JPG"
-								style="width: 100px; height: auto; border-radius: 20px;" alt="cart">
-							<header>
-								<h3>Yard Buyer App</h3>
-							</header>
-							<p>
-								Discover a seamless hyperlocal shopping experience. Connect with nearby trusted sellers,
-								enjoy fast delivery, and shop from your neighborhood stores with confidence.
-							</p>
-							<footer>
-								<ul class="buttons">
-									<li><a href="/products/yard/buyer/downloads.html" class="button">Download</a></li>
+			<!-- ============================== SELLER FEATURES ============================== -->
+			<section class="ng-section ng-band" style="padding-top:0; border-top:none;">
+				<div class="ng-container">
+					<div class="ng-section-head">
+						<span class="ng-eyebrow">Yard for sellers</span>
+						<h2>A smarter way to run and grow your retail business.</h2>
+						<p>With Yard Services, local retailers can manage their entire store digitally — from
+							product listings to payments, customer orders, delivery and business insights.</p>
+					</div>
+
+					<div class="ng-feature-grid">
+						<div class="ng-feature-card">
+							<div class="ng-feature-icon"><span class="icon solid fa-mobile-alt"></span></div>
+							<h4>Online in minutes</h4>
+							<p>Take your store online quickly, without needing any technical setup.</p>
+						</div>
+						<div class="ng-feature-card">
+							<div class="ng-feature-icon"><span class="icon solid fa-store"></span></div>
+							<h4>Inventory made simple</h4>
+							<p>Manage products, categories and stock levels easily from one place.</p>
+						</div>
+						<div class="ng-feature-card">
+							<div class="ng-feature-icon"><span class="icon solid fa-credit-card"></span></div>
+							<h4>Secure payments</h4>
+							<p>Accept online payments safely, with money reaching you reliably.</p>
+						</div>
+						<div class="ng-feature-card">
+							<div class="ng-feature-icon"><span class="icon solid fa-id-card"></span></div>
+							<h4>Verified &amp; trusted</h4>
+							<p>Get verified through KYC, shop verification and bank verification.</p>
+						</div>
+						<div class="ng-feature-card">
+							<div class="ng-feature-icon"><span class="icon solid fa-wallet"></span></div>
+							<h4>Withdraw anytime</h4>
+							<p>Access your earnings whenever you need them, with no waiting periods.</p>
+						</div>
+						<div class="ng-feature-card">
+							<div class="ng-feature-icon"><span class="icon solid fa-chart-bar"></span></div>
+							<h4>Real-time reports</h4>
+							<p>Track performance with live sales reports and business insights.</p>
+						</div>
+						<div class="ng-feature-card">
+							<div class="ng-feature-icon"><span class="icon solid fa-camera"></span></div>
+							<h4>Digital catalog</h4>
+							<p>Upload product photos and maintain a clean, browsable catalog.</p>
+						</div>
+						<div class="ng-feature-card">
+							<div class="ng-feature-icon"><span class="icon solid fa-shield-alt"></span></div>
+							<h4>Trust &amp; safety</h4>
+							<p>Every listing is verified by Aspiral Networks for buyer confidence.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<div class="ng-container">
+				<div class="ng-divider">
+					<div class="ng-d-line"></div>
+					<div class="ng-d-dot"></div>
+					<div class="ng-d-line"></div>
+				</div>
+			</div>
+
+			<!-- ============================== BUYER APP ============================== -->
+			<section class="ng-section">
+				<div class="ng-container">
+					<div class="ng-split-dark">
+						<div class="ng-split">
+							<div>
+								<span class="ng-eyebrow">Yard Buyer App</span>
+								<h2>Shop your neighbourhood, digitally.</h2>
+								<p class="ng-body">
+									Discover a seamless hyperlocal shopping experience. Connect with nearby trusted
+									sellers, enjoy fast delivery, and shop from your neighbourhood stores with
+									confidence.
+								</p>
+								<ul class="ng-checklist">
+									<li><svg viewBox="0 0 20 20" fill="none">
+											<path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="1.8"
+												stroke-linecap="round" stroke-linejoin="round" />
+										</svg>Discover trusted sellers near you</li>
+									<li><svg viewBox="0 0 20 20" fill="none">
+											<path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="1.8"
+												stroke-linecap="round" stroke-linejoin="round" />
+										</svg>Fast, local delivery</li>
+									<li><svg viewBox="0 0 20 20" fill="none">
+											<path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="1.8"
+												stroke-linecap="round" stroke-linejoin="round" />
+										</svg>Secure, simple checkout</li>
 								</ul>
-							</footer>
-						</section>
+								<a href="/products/yard/buyer/downloads.html" class="button primary">Download the Buyer
+									App</a>
+							</div>
+							<div class="ng-frame">
+								<img src="assets/images/YardBuy.JPG" alt="Yard Buyer App">
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>
 
-			<!-- Section: Vision -->
-			<header class="special container">
-				<span class="icon solid fa-bullseye"></span>
-				<h2>Our Vision</h2>
-				<p>
-					To build a digitally empowered retail ecosystem that uplifts small businesses, strengthens local
-					economies, and supports a self-reliant India.
-				</p>
-			</header>
+			<!-- ============================== VISION + ROAD AHEAD ============================== -->
+			<section class="ng-section ng-band">
+				<div class="ng-container">
+					<div class="ng-section-head center">
+						<span class="ng-eyebrow slate">Where we're headed</span>
+						<h2>Our vision for India's retail future.</h2>
+					</div>
 
-			<!-- Section: Road Ahead -->
-			<header class="special container">
-				<span class="icon solid fa-road"></span>
-				<h2>The Road Ahead</h2>
-				<p>
-					Aspiral Networks Pvt. Ltd. is committed to expanding digital commerce across India. Through
-					continuous
-					innovation, reliable technology, and retailer-focused solutions, we aim to empower millions of
-					merchants nationwide.
-				</p>
-			</header>
+					<div class="ng-value-duo">
+						<div class="ng-value-card">
+							<div class="ng-value-icon"><span class="icon solid fa-bullseye"></span></div>
+							<h3>Our vision</h3>
+							<p>To build a digitally empowered retail ecosystem that uplifts small businesses,
+								strengthens local economies, and supports a self-reliant India.</p>
+						</div>
+						<div class="ng-value-card">
+							<div class="ng-value-icon"><span class="icon solid fa-road"></span></div>
+							<h3>The road ahead</h3>
+							<p>We're committed to expanding digital commerce across India — through continuous
+								innovation, reliable technology, and retailer-focused solutions that empower
+								millions of merchants nationwide.</p>
+						</div>
+					</div>
+				</div>
+			</section>
 
 		</article>
 

@@ -8,16 +8,10 @@
 
     <!-- Updated asset paths -->
     <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="stylesheet" href="/assets/css/nova-grid.css" />
     <noscript>
         <link rel="stylesheet" href="/assets/css/noscript.css" />
     </noscript>
-    <style>
-        /* Ensure question-answer text is left-aligned like Seller FAQs */
-        .faq-section p {
-            text-align: left;
-            margin-bottom: 1em;
-        }
-    </style>
 </head>
 
 <body class="is-preload">
@@ -29,110 +23,141 @@
         <!-- Main -->
         <article id="main">
 
-            <header class="special container">
-                <span class="icon solid fa-question-circle"></span>
-                <h2><strong>Buyer FAQs</strong></h2>
-                <p>Find answers to the most common questions about using the Yard Buyer App.</p>
-            </header>
+            <!-- ============================== PAGE HEADER ============================== -->
+            <section class="ng-page-header ng-container">
+                <span class="ng-eyebrow">Yard Buyer App</span>
+                <h1>Buyer FAQs</h1>
+                <p class="ng-lead">Find answers to the most common questions about using the Yard Buyer App.</p>
+            </section>
 
-            <section class="wrapper style1 container faq-section">
+            <!-- ============================== FAQ GROUPS ============================== -->
+            <section class="ng-section" style="padding-top:0;">
+                <div class="ng-container ng-narrow">
 
-                <!-- Getting Started -->
-                <section>
-                    <header>
-                        <h3>1. Getting Started</h3>
-                    </header>
+                    <!-- 1. Getting Started -->
+                    <div class="ng-faq-category">
+                        <span class="ng-eyebrow slate">1. Getting Started</span>
+                        <div class="ng-faq-list">
+                            <details class="ng-faq-item">
+                                <summary>Q1. Who can register as a buyer on Yard?</summary>
+                                <p class="ng-faq-answer">Any individual or customer in India can register and start
+                                    ordering products online.</p>
+                            </details>
+                            <details class="ng-faq-item">
+                                <summary>Q2. How do I install the Yard Buyer App?</summary>
+                                <p class="ng-faq-answer">You can download the app from the Downloads page or
+                                    directly from the Google Play Store / App Store.</p>
+                            </details>
+                            <details class="ng-faq-item">
+                                <summary>Q3. Is there any registration fee?</summary>
+                                <p class="ng-faq-answer">No, registration is completely free. You only pay for the
+                                    products you purchase.</p>
+                            </details>
+                        </div>
+                    </div>
 
-                    <p><strong>Q1. Who can register as a buyer on Yard?</strong><br>
-                        Any individual or customer in India can register and start ordering products online.</p>
+                    <!-- 2. Account & Verification -->
+                    <div class="ng-faq-category">
+                        <span class="ng-eyebrow slate">2. Account &amp; Verification</span>
+                        <div class="ng-faq-list">
+                            <details class="ng-faq-item">
+                                <summary>Q4. What information is required to create a buyer account?</summary>
+                                <p class="ng-faq-answer">Basic personal details such as name, mobile number, email,
+                                    and delivery address are required.</p>
+                            </details>
+                            <details class="ng-faq-item">
+                                <summary>Q5. How do I update my account information?</summary>
+                                <p class="ng-faq-answer">You can update your profile, contact details, and delivery
+                                    addresses via the app settings.</p>
+                            </details>
+                            <details class="ng-faq-item">
+                                <summary>Q6. Can my account be suspended?</summary>
+                                <p class="ng-faq-answer">Yes, for repeated policy violations, fraudulent activity,
+                                    or misuse of the platform.</p>
+                            </details>
+                        </div>
+                    </div>
 
-                    <p><strong>Q2. How do I install the Yard Buyer App?</strong><br>
-                        You can download the app from the Downloads page or directly from the Google Play Store / App
-                        Store.</p>
+                    <!-- 3. Orders & Delivery -->
+                    <div class="ng-faq-category">
+                        <span class="ng-eyebrow slate">3. Orders &amp; Delivery</span>
+                        <div class="ng-faq-list">
+                            <details class="ng-faq-item">
+                                <summary>Q7. How do I place an order?</summary>
+                                <p class="ng-faq-answer">Browse products, add to cart, select delivery address, and
+                                    complete payment through the app.</p>
+                            </details>
+                            <details class="ng-faq-item">
+                                <summary>Q8. How can I track my order?</summary>
+                                <p class="ng-faq-answer">Real-time order tracking is available in your dashboard
+                                    within the app.</p>
+                            </details>
+                            <details class="ng-faq-item">
+                                <summary>Q9. What if my order is delayed?</summary>
+                                <p class="ng-faq-answer">Contact support via the app or check the order status for
+                                    updates. Delivery may depend on seller location and logistics partners.</p>
+                            </details>
+                        </div>
+                    </div>
 
-                    <p><strong>Q3. Is there any registration fee?</strong><br>
-                        No, registration is completely free. You only pay for the products you purchase.</p>
-                </section>
+                    <!-- 4. Payments & Refunds -->
+                    <div class="ng-faq-category">
+                        <span class="ng-eyebrow slate">4. Payments &amp; Refunds</span>
+                        <div class="ng-faq-list">
+                            <details class="ng-faq-item">
+                                <summary>Q10. What payment methods are accepted?</summary>
+                                <p class="ng-faq-answer">Credit/Debit cards, UPI, net banking, and supported digital
+                                    wallets.</p>
+                            </details>
+                            <details class="ng-faq-item">
+                                <summary>Q11. Can I cancel an order?</summary>
+                                <p class="ng-faq-answer">Buyer-initiated cancellations are allowed before order
+                                    confirmation. After confirmation, contact support for assistance.</p>
+                            </details>
+                            <details class="ng-faq-item">
+                                <summary>Q12. How are refunds processed?</summary>
+                                <p class="ng-faq-answer">Refunds are processed via the original payment method
+                                    within 5–7 business days.</p>
+                            </details>
+                        </div>
+                    </div>
 
-                <!-- Account & Verification -->
-                <section>
-                    <header>
-                        <h3>2. Account & Verification</h3>
-                    </header>
+                    <!-- 5. Fees & Charges -->
+                    <div class="ng-faq-category">
+                        <span class="ng-eyebrow slate">5. Fees &amp; Charges</span>
+                        <div class="ng-faq-list">
+                            <details class="ng-faq-item">
+                                <summary>Q13. Are there any platform fees?</summary>
+                                <p class="ng-faq-answer">Yes, a small service fee may be applied during checkout.
+                                    All fees are clearly displayed before payment.</p>
+                            </details>
+                            <details class="ng-faq-item">
+                                <summary>Q14. Are there hidden charges?</summary>
+                                <p class="ng-faq-answer">No, all charges are transparent and visible during the
+                                    payment process.</p>
+                            </details>
+                        </div>
+                    </div>
 
-                    <p><strong>Q4. What information is required to create a buyer account?</strong><br>
-                        Basic personal details such as name, mobile number, email, and delivery address are required.
-                    </p>
+                    <!-- 6. Support & Contact -->
+                    <div class="ng-faq-category">
+                        <span class="ng-eyebrow slate">6. Support &amp; Contact</span>
+                        <div class="ng-faq-list">
+                            <details class="ng-faq-item">
+                                <summary>Q15. How do I contact support?</summary>
+                                <p class="ng-faq-answer">Use the Help &amp; Support section within the app or email
+                                    <strong>yard-services@aspiralnetworks.in</strong>.
+                                </p>
+                            </details>
+                            <details class="ng-faq-item">
+                                <summary>Q16. How can I report issues with a seller?</summary>
+                                <p class="ng-faq-answer">You can report problems via the order details page or
+                                    contact support directly.</p>
+                            </details>
+                        </div>
+                    </div>
 
-                    <p><strong>Q5. How do I update my account information?</strong><br>
-                        You can update your profile, contact details, and delivery addresses via the app settings.</p>
-
-                    <p><strong>Q6. Can my account be suspended?</strong><br>
-                        Yes, for repeated policy violations, fraudulent activity, or misuse of the platform.</p>
-                </section>
-
-                <!-- Ordering & Delivery -->
-                <section>
-                    <header>
-                        <h3>3. Orders & Delivery</h3>
-                    </header>
-
-                    <p><strong>Q7. How do I place an order?</strong><br>
-                        Browse products, add to cart, select delivery address, and complete payment through the app.</p>
-
-                    <p><strong>Q8. How can I track my order?</strong><br>
-                        Real-time order tracking is available in your dashboard within the app.</p>
-
-                    <p><strong>Q9. What if my order is delayed?</strong><br>
-                        Contact support via the app or check the order status for updates. Delivery may depend on seller
-                        location and logistics partners.</p>
-                </section>
-
-                <!-- Payments -->
-                <section>
-                    <header>
-                        <h3>4. Payments & Refunds</h3>
-                    </header>
-
-                    <p><strong>Q10. What payment methods are accepted?</strong><br>
-                        Credit/Debit cards, UPI, net banking, and supported digital wallets.</p>
-
-                    <p><strong>Q11. Can I cancel an order?</strong><br>
-                        Buyer-initiated cancellations are allowed before order confirmation. After confirmation, contact
-                        support for assistance.</p>
-
-                    <p><strong>Q12. How are refunds processed?</strong><br>
-                        Refunds are processed via the original payment method within 5–7 business days.</p>
-                </section>
-
-                <!-- Fees & Charges -->
-                <section>
-                    <header>
-                        <h3>5. Fees & Charges</h3>
-                    </header>
-
-                    <p><strong>Q13. Are there any platform fees?</strong><br>
-                        Yes, a small service fee may be applied during checkout. All fees are clearly displayed before
-                        payment.</p>
-
-                    <p><strong>Q14. Are there hidden charges?</strong><br>
-                        No, all charges are transparent and visible during the payment process.</p>
-                </section>
-
-                <!-- Support -->
-                <section>
-                    <header>
-                        <h3>6. Support & Contact</h3>
-                    </header>
-
-                    <p><strong>Q15. How do I contact support?</strong><br>
-                        Use the Help & Support section within the app or email <strong>support@Aspiral
-                            Networks.com</strong>.</p>
-
-                    <p><strong>Q16. How can I report issues with a seller?</strong><br>
-                        You can report problems via the order details page or contact support directly.</p>
-                </section>
-
+                </div>
             </section>
 
         </article>
