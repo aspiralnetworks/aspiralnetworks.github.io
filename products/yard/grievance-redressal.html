@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<!--
+	Twenty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>Yard Services – Grievance Redressal | Aspiral Networks Pvt. Ltd.</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="/assets/css/main.css" />
+	<link rel="stylesheet" href="/assets/css/nova-grid.css" />
+	<noscript>
+		<link rel="stylesheet" href="/assets/css/noscript.css" />
+	</noscript>
+</head>
+
+<body class="is-preload">
+	<div id="page-wrapper">
+
+		<!-- Header -->
+		<div id="header-placeholder"></div>
+
+		<!-- Main -->
+		<div id="main-placeholder"></div>
+
+		<!-- Footer -->
+		<div id="footer-placeholder"></div>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/jquery.dropotron.min.js"></script>
+	<script src="/assets/js/jquery.scrollex.min.js"></script>
+	<script src="/assets/js/jquery.scrolly.min.js"></script>
+	<script src="/assets/js/browser.min.js"></script>
+	<script src="/assets/js/breakpoints.min.js"></script>
+	<script src="/assets/js/util.js"></script>
+	<script src="/assets/js/main.js"></script>
+
+	<script>
+		// Load header from same folder
+		fetch('/header.html')
+			.then(res => res.text())
+			.then(html => {
+				document.getElementById('header-placeholder').innerHTML = html;
+				initHeaderScripts();
+				setupMobileNav();
+			});
+
+		// Load tnc main from same folder
+		fetch('/products/yard/grievance-redressal-main.html')
+			.then(res => res.text())
+			.then(html => {
+				document.getElementById('main-placeholder').innerHTML = html;
+				initHeaderScripts();
+				setupMobileNav();
+			});
+
+		fetch('/footer.html')
+			.then(res => res.text())
+			.then(html => {
+				document.getElementById('footer-placeholder').innerHTML = html;
+
+				// Initialize dropdown AFTER header is injected
+				initHeaderScripts();
+			});
+
+		function initHeaderScripts() {
+			$('#nav > ul').dropotron({
+				offsetY: 0,
+				hoverDelay: 0
+			});
+		}
+
+		function setupMobileNav() {
+			var $body = $('body');
+
+			// Remove old panel/title
+			$('#navPanel, #titleBar').remove();
+
+			// Build title bar
+			$('<div id="titleBar">' +
+				'<a href="#navPanel" class="toggle"></a>' +
+				'<span class="title">' + $('#logo').html() + '</span>' +
+				'</div>').appendTo($body);
+
+			// Generate mobile-friendly menu (navList = HTML5UP built-in)
+			var navHtml = $('#nav').navList();
+
+			// Build mobile nav panel
+			$('<div id="navPanel">' +
+				'<nav>' + navHtml + '</nav>' +
+				'</div>')
+				.appendTo($body)
+				.panel({
+					delay: 500,
+					hideOnClick: true,
+					hideOnSwipe: true,
+					resetScroll: true,
+					resetForms: true,
+					side: 'left'
+				});
+		}
+	</script>
+
+</body>
+
+</html>
