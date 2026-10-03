@@ -1,0 +1,2181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+  <title>Take orders from customers near your shop | YardStore by Aspiral Networks</title>
+  <meta name="description"
+    content="List your shop on YardStore. Nearby buyers order on YardBuy and pay you directly. No commission. First 100 sellers get a 1-year subscription free.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Baloo 2 + Hind cover English and Hindi. Baloo Tamma 2 + Noto Sans Kannada cover Kannada.
+       Google Fonts splits by script, so Kannada files only download when Kannada text is shown. -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Baloo+Tamma+2:wght@600;700;800&family=Hind:wght@400;500;600&family=Noto+Sans+Kannada:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    referrerpolicy="no-referrer">
+  <style>
+    :root {
+      --leaf: #0b6b4f;
+      --leaf-dk: #074a37;
+      --leaf-lt: #e2f1eb;
+      --turmeric: #f2b134;
+      --turmeric-lt: #fff2d3;
+      --chilli: #b3412e;
+      --ink: #17201d;
+      --mut: #56635e;
+      --bg: #f3f6f4;
+      --paper: #ffffff;
+      --line: #d6e2dc;
+      --head: "Baloo 2", "Hind", system-ui, sans-serif;
+      --body: "Hind", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+    }
+
+    /* ---------- Language-specific type ---------- */
+    html:lang(kn) {
+      --head: "Baloo Tamma 2", "Noto Sans Kannada", "Baloo 2", system-ui, sans-serif;
+      --body: "Noto Sans Kannada", "Hind", system-ui, sans-serif;
+    }
+
+    html:lang(kn) body {
+      font-size: 17px;
+      line-height: 1.75
+    }
+
+    html:lang(kn) h1,
+    html:lang(kn) h2,
+    html:lang(kn) h3 {
+      line-height: 1.4
+    }
+
+    html:lang(hi) h1,
+    html:lang(hi) h2,
+    html:lang(hi) h3 {
+      line-height: 1.35
+    }
+
+    html:not(:lang(en)) .hero h1 {
+      letter-spacing: 0;
+      max-width: 20ch;
+      font-size: clamp(30px, 6vw, 48px)
+    }
+
+    [lang="kn"] {
+      font-family: "Noto Sans Kannada", "Hind", system-ui, sans-serif
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 72px
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto
+      }
+
+      * {
+        animation: none !important;
+        transition: none !important
+      }
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--body);
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--ink);
+      background: var(--bg);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    a {
+      color: var(--leaf)
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid var(--turmeric);
+      outline-offset: 2px
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--head);
+      line-height: 1.15;
+      margin: 0
+    }
+
+    p {
+      margin: 0
+    }
+
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px
+    }
+
+    /* ---------- Top bar ---------- */
+    .offer-strip {
+      background: var(--leaf-dk);
+      color: #fff;
+      font-size: 15px;
+      text-align: center;
+      padding: 8px 16px;
+      padding-top: calc(8px + env(safe-area-inset-top, 0px));
+    }
+
+    .offer-strip i {
+      color: var(--turmeric);
+      margin-right: 6px
+    }
+
+    .offer-strip b {
+      color: var(--turmeric)
+    }
+
+    .bar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, .96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(6px);
+    }
+
+    .bar .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 62px;
+      gap: 10px
+    }
+
+    .bar .right {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--leaf-dk);
+      min-width: 0
+    }
+
+    .brand .mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: var(--leaf);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 17px;
+      flex: none;
+    }
+
+    .brand b {
+      font-family: "Baloo 2", system-ui, sans-serif;
+      font-size: 22px;
+      line-height: 1
+    }
+
+    .brand small {
+      display: block;
+      font-size: 12.5px;
+      color: var(--mut);
+      line-height: 1.3
+    }
+
+    /* Language switcher */
+    .lang {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      padding: 3px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 11px;
+    }
+
+    .lang>i {
+      color: var(--mut);
+      padding: 0 6px 0 7px;
+      font-size: 15px
+    }
+
+    .lang button {
+      border: 0;
+      background: transparent;
+      color: var(--mut);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14.5px;
+      line-height: 1;
+      padding: 9px 11px;
+      min-height: 36px;
+      border-radius: 8px;
+    }
+
+    .lang button[lang="en"],
+    .lang button[lang="hi"] {
+      font-family: "Hind", system-ui, sans-serif
+    }
+
+    .lang button:hover {
+      color: var(--ink)
+    }
+
+    .lang button[aria-pressed="true"] {
+      background: var(--leaf);
+      color: #fff
+    }
+
+    .lang .short {
+      display: none
+    }
+
+    @media (max-width: 680px) {
+      .bar .right .btn {
+        display: none
+      }
+
+      .brand small {
+        display: none
+      }
+    }
+
+    @media (max-width: 400px) {
+      .lang>i {
+        display: none
+      }
+
+      .lang .full {
+        display: none
+      }
+
+      .lang .short {
+        display: inline
+      }
+
+      .lang button {
+        padding: 9px 9px
+      }
+
+      .brand b {
+        font-size: 19px
+      }
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--leaf);
+      color: #fff;
+      border: 0;
+      border-radius: 12px;
+      padding: 14px 24px;
+      min-height: 52px;
+      font-family: var(--body);
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 1.2;
+      text-decoration: none;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .btn:hover {
+      background: var(--leaf-dk)
+    }
+
+    .btn.sm {
+      min-height: 42px;
+      padding: 9px 16px;
+      font-size: 16px
+    }
+
+    .btn.gold {
+      background: var(--turmeric);
+      color: var(--ink)
+    }
+
+    .btn.gold:hover {
+      background: #e3a21f
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      padding: 40px 0 48px;
+      background: linear-gradient(180deg, #fff 0%, var(--bg) 100%)
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 32px
+    }
+
+    @media (min-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1.1fr .9fr;
+        align-items: start
+      }
+    }
+
+    .hero h1 {
+      font-size: clamp(34px, 7vw, 56px);
+      font-weight: 800;
+      letter-spacing: -.5px;
+      max-width: 14ch
+    }
+
+    .hero .lead {
+      font-size: 20px;
+      color: var(--mut);
+      margin: 16px 0 22px;
+      max-width: 34ch
+    }
+
+    html:lang(kn) .hero .lead {
+      font-size: 18.5px;
+      max-width: 40ch
+    }
+
+    .promises {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 26px;
+      display: grid;
+      gap: 10px
+    }
+
+    .promises li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-weight: 600
+    }
+
+    .promises i {
+      color: var(--leaf);
+      font-size: 20px;
+      width: 24px;
+      text-align: center;
+      margin-top: 3px;
+      flex: none
+    }
+
+    .receipt {
+      background: var(--paper);
+      font-family: var(--mono);
+      font-size: 14px;
+      line-height: 1.55;
+      width: 100%;
+      max-width: 340px;
+      padding: 18px 20px 26px;
+      border-radius: 4px 4px 0 0;
+      box-shadow: 0 18px 40px -22px rgba(7, 74, 55, .45);
+      position: relative;
+      transform: rotate(-1.5deg);
+      --tooth: 9px;
+      -webkit-mask: conic-gradient(from 135deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom/var(--tooth) var(--tooth) repeat-x, linear-gradient(#000 0 0) top/100% calc(100% - var(--tooth)) no-repeat;
+      mask: conic-gradient(from 135deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom/var(--tooth) var(--tooth) repeat-x, linear-gradient(#000 0 0) top/100% calc(100% - var(--tooth)) no-repeat;
+    }
+
+    html:not(:lang(en)) .receipt {
+      font-family: var(--mono), var(--body)
+    }
+
+    .receipt .shop {
+      text-align: center;
+      font-weight: 700;
+      font-size: 15px
+    }
+
+    .receipt .meta {
+      text-align: center;
+      color: var(--mut);
+      font-size: 12.5px
+    }
+
+    .receipt hr {
+      border: 0;
+      border-top: 1px dashed #9aaba4;
+      margin: 10px 0
+    }
+
+    .receipt .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px
+    }
+
+    .receipt .total {
+      font-weight: 700;
+      font-size: 15px
+    }
+
+    .receipt .zero {
+      color: var(--leaf);
+      font-weight: 700
+    }
+
+    .receipt .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--leaf-lt);
+      color: var(--leaf-dk);
+      font-family: var(--body);
+      font-weight: 600;
+      font-size: 13px;
+      padding: 2px 10px;
+      border-radius: 99px;
+      margin: 4px 0 2px
+    }
+
+    .hero-receipt {
+      display: none
+    }
+
+    @media (min-width: 900px) {
+      .hero-receipt {
+        display: block;
+        margin-top: 8px
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-receipt .receipt {
+        animation: print .9s cubic-bezier(.2, .7, .2, 1) .2s both
+      }
+
+      @keyframes print {
+        from {
+          clip-path: inset(0 0 100% 0)
+        }
+
+        to {
+          clip-path: inset(0 0 0 0)
+        }
+      }
+    }
+
+    /* ---------- Form ---------- */
+    .formbox {
+      background: var(--paper);
+      border: 2px solid var(--leaf);
+      border-radius: 18px;
+      padding: 24px 22px;
+      box-shadow: 0 24px 50px -30px rgba(7, 74, 55, .5);
+    }
+
+    .formbox h2 {
+      font-size: 27px
+    }
+
+    .formbox .sub {
+      color: var(--mut);
+      font-size: 16px;
+      margin: 4px 0 6px
+    }
+
+    .seat {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      background: var(--turmeric-lt);
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin: 14px 0 4px;
+      font-size: 15.5px;
+      line-height: 1.45
+    }
+
+    .seat i {
+      font-size: 22px;
+      color: #a46c00
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin: 14px 0 5px;
+      font-size: 16px
+    }
+
+    .field {
+      position: relative
+    }
+
+    .field i {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #7d8c86;
+      pointer-events: none
+    }
+
+    input,
+    select {
+      width: 100%;
+      min-height: 50px;
+      padding: 12px 14px 12px 42px;
+      border: 1px solid #b6c7c0;
+      border-radius: 10px;
+      background: #fff;
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 17px;
+    }
+
+    select {
+      appearance: none;
+      background-image: linear-gradient(45deg, transparent 50%, #56635e 50%), linear-gradient(135deg, #56635e 50%, transparent 50%);
+      background-position: calc(100% - 20px) 22px, calc(100% - 14px) 22px;
+      background-size: 6px 6px;
+      background-repeat: no-repeat
+    }
+
+    input:focus,
+    select:focus {
+      outline: 3px solid #a6dcc7;
+      border-color: var(--leaf)
+    }
+
+    input:user-invalid,
+    select:user-invalid {
+      border-color: var(--chilli)
+    }
+
+    .two {
+      display: grid;
+      gap: 0 12px
+    }
+
+    @media (min-width: 520px) {
+      .two {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    .consent {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin: 18px 0;
+      font-size: 14px;
+      color: var(--mut);
+      line-height: 1.55
+    }
+
+    .consent input {
+      width: 22px;
+      height: 22px;
+      min-height: 0;
+      padding: 0;
+      margin-top: 2px;
+      flex: none;
+      accent-color: var(--leaf)
+    }
+
+    .consent label {
+      font-weight: 400;
+      margin: 0;
+      font-size: 14px
+    }
+
+    .formbox .btn {
+      width: 100%
+    }
+
+    .btn.is-sending {
+      opacity: .75;
+      cursor: progress
+    }
+
+    .btn.is-sending> :not(.sending) {
+      display: none
+    }
+
+    .formnote {
+      text-align: center;
+      font-size: 14px;
+      color: var(--mut);
+      margin-top: 10px
+    }
+
+    .formnote.privacy {
+      font-size: 13px;
+      margin-top: 6px;
+      line-height: 1.45
+    }
+
+    .formnote i {
+      color: var(--leaf)
+    }
+
+    /* ---------- Sections ---------- */
+    section {
+      padding: 56px 0
+    }
+
+    .sec-head {
+      max-width: 660px;
+      margin-bottom: 30px
+    }
+
+    .sec-head h2 {
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 800
+    }
+
+    html:lang(kn) .sec-head h2 {
+      font-size: clamp(25px, 4.5vw, 36px)
+    }
+
+    .sec-head p {
+      color: var(--mut);
+      margin-top: 10px;
+      font-size: 19px
+    }
+
+    .missing {
+      background: var(--paper)
+    }
+
+    .scenes {
+      display: grid;
+      gap: 14px
+    }
+
+    .scene {
+      display: grid;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      overflow: hidden
+    }
+
+    @media (min-width: 760px) {
+      .scene {
+        grid-template-columns: 1.05fr 1fr 1fr
+      }
+    }
+
+    .scene>div {
+      padding: 16px 18px
+    }
+
+    .scene .moment {
+      background: var(--bg);
+      font-weight: 600;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start
+    }
+
+    .scene .moment i {
+      color: var(--leaf-dk);
+      font-size: 20px;
+      margin-top: 3px;
+      width: 22px;
+      text-align: center;
+      flex: none
+    }
+
+    .scene .off,
+    .scene .on {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 16.5px
+    }
+
+    .scene .off {
+      color: #5c3a33
+    }
+
+    .scene .off i {
+      color: var(--chilli);
+      margin-top: 4px
+    }
+
+    .scene .on {
+      background: var(--leaf-lt);
+      color: var(--leaf-dk)
+    }
+
+    .scene .on i {
+      color: var(--leaf);
+      margin-top: 4px
+    }
+
+    .scene .k {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--mut);
+      margin-bottom: 2px
+    }
+
+    .scene .on .k {
+      color: var(--leaf)
+    }
+
+    .col-keys {
+      display: none
+    }
+
+    @media (min-width: 760px) {
+      .col-keys {
+        display: grid;
+        grid-template-columns: 1.05fr 1fr 1fr;
+        padding: 0 18px 8px;
+        font-weight: 700;
+        font-size: 16px
+      }
+
+      .col-keys span:nth-child(2) {
+        color: var(--chilli)
+      }
+
+      .col-keys span:nth-child(3) {
+        color: var(--leaf)
+      }
+
+      .scene .k {
+        display: none
+      }
+    }
+
+    .missing-cta {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center
+    }
+
+    .missing-cta p {
+      color: var(--mut);
+      font-size: 17px
+    }
+
+    .groups {
+      display: grid;
+      gap: 22px
+    }
+
+    @media (min-width: 820px) {
+      .groups {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    .group {
+      background: var(--paper);
+      border-radius: 18px;
+      padding: 24px 22px;
+      border: 1px solid var(--line)
+    }
+
+    .group-head {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 14px
+    }
+
+    .group-head .badge {
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      background: var(--leaf);
+      color: #fff;
+      flex: none
+    }
+
+    .group:nth-child(2) .badge {
+      background: var(--leaf-dk)
+    }
+
+    .group:nth-child(3) .badge {
+      background: var(--turmeric);
+      color: var(--ink)
+    }
+
+    .group:nth-child(4) .badge {
+      background: var(--ink)
+    }
+
+    .group-head h3 {
+      font-size: 24px
+    }
+
+    .group-head p {
+      color: var(--mut);
+      font-size: 15.5px;
+      line-height: 1.45
+    }
+
+    .feat {
+      list-style: none;
+      margin: 0;
+      padding: 0
+    }
+
+    .feat li {
+      display: flex;
+      gap: 14px;
+      padding: 12px 0;
+      border-top: 1px solid var(--line)
+    }
+
+    .feat li>i {
+      color: var(--leaf);
+      font-size: 19px;
+      width: 26px;
+      text-align: center;
+      margin-top: 4px;
+      flex: none
+    }
+
+    .feat b {
+      display: block;
+      font-weight: 600
+    }
+
+    .feat span {
+      color: var(--mut);
+      font-size: 16px;
+      line-height: 1.5
+    }
+
+    .feat .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px
+    }
+
+    .feat .chips em {
+      font-style: normal;
+      font-size: 13.5px;
+      background: var(--leaf-lt);
+      color: var(--leaf-dk);
+      padding: 2px 10px;
+      border-radius: 99px;
+      display: inline-flex;
+      gap: 6px;
+      align-items: center
+    }
+
+    .how {
+      background: var(--leaf-dk);
+      color: #e4f2ec
+    }
+
+    .how .sec-head h2 {
+      color: #fff
+    }
+
+    .how .sec-head p {
+      color: #b9d8cb
+    }
+
+    .flow {
+      display: grid;
+      gap: 14px;
+      align-items: stretch
+    }
+
+    @media (min-width: 860px) {
+      .flow {
+        grid-template-columns: 1fr auto 1fr auto 1fr
+      }
+    }
+
+    .node {
+      background: rgba(255, 255, 255, .07);
+      border: 1px solid rgba(255, 255, 255, .16);
+      border-radius: 16px;
+      padding: 20px
+    }
+
+    .node i.big {
+      font-size: 30px;
+      color: var(--turmeric)
+    }
+
+    .node h3 {
+      color: #fff;
+      font-size: 22px;
+      margin: 10px 0 4px
+    }
+
+    .node p {
+      font-size: 16.5px;
+      color: #c9e1d7
+    }
+
+    .arrow {
+      display: grid;
+      place-items: center;
+      color: var(--turmeric);
+      font-size: 22px
+    }
+
+    .arrow i {
+      transform: rotate(90deg)
+    }
+
+    @media (min-width: 860px) {
+      .arrow i {
+        transform: none
+      }
+    }
+
+    .direct {
+      margin-top: 22px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: rgba(242, 177, 52, .14);
+      border: 1px solid rgba(242, 177, 52, .45);
+      border-radius: 14px;
+      padding: 16px 18px;
+      color: #fff
+    }
+
+    .direct i {
+      color: var(--turmeric);
+      font-size: 24px;
+      margin-top: 2px
+    }
+
+    .direct p {
+      font-size: 17px
+    }
+
+    .offer-box {
+      display: grid;
+      gap: 24px;
+      background: var(--paper);
+      border-radius: 22px;
+      padding: 28px 24px;
+      border: 2px dashed var(--turmeric);
+      align-items: center
+    }
+
+    @media (min-width: 820px) {
+      .offer-box {
+        grid-template-columns: 1fr 1fr;
+        padding: 36px
+      }
+    }
+
+    .offer-box h2 {
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 800
+    }
+
+    html:lang(kn) .offer-box h2 {
+      font-size: clamp(25px, 4.5vw, 36px)
+    }
+
+    .offer-box p {
+      color: var(--mut);
+      margin-top: 10px
+    }
+
+    .pledge {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 12px
+    }
+
+    .pledge li {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      background: var(--bg);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-weight: 600
+    }
+
+    .pledge i {
+      font-size: 22px;
+      color: var(--leaf);
+      width: 28px;
+      text-align: center;
+      flex: none
+    }
+
+    .steps {
+      list-style: none;
+      counter-reset: s;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 14px
+    }
+
+    @media (min-width: 760px) {
+      .steps {
+        grid-template-columns: repeat(3, 1fr)
+      }
+    }
+
+    .steps li {
+      counter-increment: s;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px
+    }
+
+    .steps li::before {
+      content: counter(s);
+      display: inline-grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--leaf);
+      color: #fff;
+      font: 800 19px "Baloo 2", system-ui, sans-serif;
+      margin-bottom: 10px
+    }
+
+    .steps h3 {
+      font-size: 21px
+    }
+
+    .steps p {
+      color: var(--mut);
+      font-size: 16.5px;
+      margin-top: 4px
+    }
+
+    .faq {
+      max-width: 760px
+    }
+
+    details {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 0 18px;
+      margin: 10px 0
+    }
+
+    summary {
+      list-style: none;
+      cursor: pointer;
+      font-weight: 600;
+      padding: 16px 0;
+      display: flex;
+      justify-content: space-between;
+      gap: 14px
+    }
+
+    summary::-webkit-details-marker {
+      display: none
+    }
+
+    summary i {
+      color: var(--leaf);
+      transition: transform .2s;
+      margin-top: 5px
+    }
+
+    details[open] summary i {
+      transform: rotate(180deg)
+    }
+
+    details p {
+      color: var(--mut);
+      padding: 0 0 16px;
+      font-size: 17px
+    }
+
+    .final {
+      text-align: center;
+      background: var(--leaf);
+      color: #fff
+    }
+
+    .final h2 {
+      font-size: clamp(28px, 5.5vw, 42px);
+      font-weight: 800;
+      max-width: 22ch;
+      margin: 0 auto
+    }
+
+    .final p {
+      color: #d3eee3;
+      margin: 12px auto 24px;
+      max-width: 46ch
+    }
+
+    footer {
+      background: #0e1f19;
+      color: #c5dbd1;
+      padding: 28px 0 calc(90px + env(safe-area-inset-bottom, 0px));
+      font-size: 14.5px
+    }
+
+    @media (min-width: 900px) {
+      footer {
+        padding-bottom: 28px
+      }
+    }
+
+    footer nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 18px;
+      margin-bottom: 12px
+    }
+
+    footer a {
+      color: #fff
+    }
+
+    footer .disclaim {
+      color: #93ada2;
+      margin-top: 8px;
+      max-width: 80ch
+    }
+
+    .mobile-cta {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 30;
+      background: #fff;
+      border-top: 1px solid var(--line);
+      padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      transform: translateY(0);
+      transition: transform .25s;
+      box-shadow: 0 -8px 24px -16px rgba(0, 0, 0, .3)
+    }
+
+    .mobile-cta.hide {
+      transform: translateY(110%)
+    }
+
+    .mobile-cta p {
+      font-size: 14px;
+      line-height: 1.35;
+      color: var(--mut)
+    }
+
+    .mobile-cta p b {
+      color: var(--ink);
+      display: block;
+      font-size: 15.5px
+    }
+
+    .mobile-cta .btn {
+      flex: none
+    }
+
+    @media (min-width: 900px) {
+      .mobile-cta {
+        display: none
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="offer-strip">
+    <i class="fa-solid fa-gift" aria-hidden="true"></i>
+    <span data-i18n="strip">First 100 sellers get a <b>1-year subscription free</b>. No commission on orders,
+      ever.</span>
+  </div>
+
+  <header class="bar">
+    <div class="wrap">
+      <a class="brand" href="/" aria-label="YardStore home">
+        <span class="mark"><i class="fa-solid fa-store" aria-hidden="true"></i></span>
+        <span><b>YardStore</b><small data-i18n="tagline">Go online. Grow beyond.</small></span>
+      </a>
+      <div class="right">
+        <div class="lang" role="group" aria-label="Language" data-i18n-aria="langLabel">
+          <i class="fa-solid fa-language" aria-hidden="true"></i>
+          <button type="button" lang="en" data-lang="en" aria-pressed="true"><span class="full">English</span><span
+              class="short" aria-hidden="true">EN</span></button>
+          <button type="button" lang="kn" data-lang="kn" aria-pressed="false">ಕನ್ನಡ</button>
+          <button type="button" lang="hi" data-lang="hi" aria-pressed="false">हिंदी</button>
+        </div>
+        <a class="btn sm" href="#interest"><i class="fa-solid fa-phone" aria-hidden="true"></i><span
+            data-i18n="cta">Request a call back</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= HERO ================= -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div>
+          <h1 id="hero-title" data-i18n="h1">Your neighbours are ordering online. Make sure they order from you.</h1>
+          <p class="lead" data-i18n="lead">Put your shop on YardStore. Buyers near you find it on the YardBuy app,
+            place orders, and pay you directly.</p>
+          <ul class="promises">
+            <li><i class="fa-solid fa-indian-rupee-sign" aria-hidden="true"></i><span data-i18n="p1">Zero commission
+                on every order</span></li>
+            <li><i class="fa-solid fa-hand-holding-dollar" aria-hidden="true"></i><span data-i18n="p2">Buyers pay you
+                directly, in cash or UPI</span></li>
+            <li><i class="fa-solid fa-mobile-screen-button" aria-hidden="true"></i><span data-i18n="p3">Runs on your
+                phone, works with your thermal printer</span></li>
+          </ul>
+
+          <div class="hero-receipt" aria-hidden="true">
+            <div class="receipt">
+              <div class="shop" data-i18n="r_shop">YOUR SHOP NAME</div>
+              <div class="meta" data-i18n="r_via">Order via YardBuy &nbsp;|&nbsp; 1.2 km away</div>
+              <div style="text-align:center"><span class="tag"><i class="fa-solid fa-bell"></i><span
+                    data-i18n="r_new">New online order</span></span></div>
+              <hr>
+              <div class="row"><span data-i18n="r_i1">Wheat atta 5 kg</span><span>245.00</span></div>
+              <div class="row"><span data-i18n="r_i2">Toor dal 1 kg</span><span>160.00</span></div>
+              <div class="row"><span data-i18n="r_i3">Milk 1 L x 2</span><span>112.00</span></div>
+              <div class="row"><span data-i18n="r_pts">Loyalty points used</span><span>-17.00</span></div>
+              <hr>
+              <div class="row total"><span data-i18n="r_total">TOTAL</span><span>&#8377;500.00</span></div>
+              <div class="row"><span data-i18n="r_paid">Paid to shop (UPI)</span><span>500.00</span></div>
+              <div class="row zero"><span data-i18n="r_comm">Platform commission</span><span>&#8377;0.00</span></div>
+              <hr>
+              <div class="meta" data-i18n="r_thanks">+10 points earned. Thank you, visit again!</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= FORM ================= -->
+        <div class="formbox" id="interest">
+          <h2 data-i18n="cta">Request a call back</h2>
+          <p class="sub" data-i18n="f_sub">Tell us about your shop. We call you, explain the app in your language and
+            help you start.</p>
+          <div class="seat">
+            <i class="fa-solid fa-ticket" aria-hidden="true"></i>
+            <span data-i18n="f_seat"><b>Founding seller offer:</b> the first 100 sellers get a 1-year subscription
+              free.</span>
+          </div>
+
+          <!-- Sends to the inbox through FormSubmit, same as the Contact Us page -->
+          <form id="lead" method="POST" action="https://formsubmit.co/contact@spiralnetworks.in">
+            <!-- Spam protection: honeypot field, invisible to real visitors -->
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <!-- "false" skips FormSubmit's captcha page, so ad visitors go straight to the thank-you page -->
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="New seller call-back request (YardStore ad contact-us page)">
+            <input type="hidden" name="_template" value="table">
+            <!-- Thank-you page. The script below adds ?lang=kn or ?lang=hi so it opens in the visitor's language -->
+            <input type="hidden" name="_next" id="next_url"
+              value="https://spiralnetworks.in/products/yard/seller/contact-us-thank-you.html">
+            <label for="name" data-i18n="f_name">Your name</label>
+            <div class="field"><i class="fa-solid fa-user" aria-hidden="true"></i>
+              <input id="name" name="name" type="text" autocomplete="name" required>
+            </div>
+
+            <label for="mobile" data-i18n="f_mobile">Mobile number</label>
+            <div class="field"><i class="fa-solid fa-phone" aria-hidden="true"></i>
+              <input id="mobile" name="mobile" type="tel" inputmode="numeric" pattern="[6-9][0-9]{9}" maxlength="10"
+                placeholder="10-digit number" data-i18n-ph="f_mobile_ph" autocomplete="tel-national" required
+                title="Enter a 10-digit Indian mobile number starting with 6, 7, 8 or 9" data-i18n-title="f_mobile_err">
+            </div>
+
+            <div class="two">
+              <div>
+                <label for="shop" data-i18n="f_shop">Shop name</label>
+                <div class="field"><i class="fa-solid fa-shop" aria-hidden="true"></i>
+                  <input id="shop" name="shop_name" type="text" required>
+                </div>
+              </div>
+              <div>
+                <label for="city" data-i18n="f_city">City or town</label>
+                <div class="field"><i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                  <input id="city" name="city" type="text" autocomplete="address-level2" required>
+                </div>
+              </div>
+            </div>
+
+            <!-- Option values stay in English so your backend receives the same data in every language -->
+            <label for="type" data-i18n="f_type">What do you sell?</label>
+            <div class="field"><i class="fa-solid fa-basket-shopping" aria-hidden="true"></i>
+              <select id="type" name="shop_type" required>
+                <option value="" data-i18n="f_select">Select</option>
+                <option value="Convenience-Store" data-i18n="t_convenience">Provision / general store</option>
+                <option value="Fruit-Vegetable-Store" data-i18n="t_fruit">Fruits and vegetables</option>
+                <option value="Supermarket-Grocery" data-i18n="t_supermarket">Supermarket</option>
+                <option value="Electronics-Store" data-i18n="t_electronics">Electronics</option>
+                <option value="Furniture-Store" data-i18n="t_furniture">Furniture</option>
+                <option value="Appliance-Store" data-i18n="t_appliance">Appliances</option>
+                <option value="Hardware-Store" data-i18n="t_hardware">Hardware</option>
+                <option value="Beauty-Store" data-i18n="t_beauty">Beauty</option>
+                <option value="Pet-Store" data-i18n="t_pet">Pet store</option>
+                <option value="Computer-Store" data-i18n="t_computer">Computer store</option>
+                <option value="Other" data-i18n="t_other">Other</option>
+              </select>
+            </div>
+
+            <label for="lang" data-i18n="f_lang">Preferred language for our call</label>
+            <div class="field"><i class="fa-solid fa-language" aria-hidden="true"></i>
+              <select id="lang" name="language" required>
+                <option value="" data-i18n="f_select">Select</option>
+                <option value="Hindi" data-i18n="l_hi">Hindi</option>
+                <option value="English" data-i18n="l_en">English</option>
+                <option value="Kannada" data-i18n="l_kn">Kannada</option>
+                <option value="Tamil" data-i18n="l_ta">Tamil</option>
+              </select>
+            </div>
+
+            <div class="consent">
+              <input id="consent" name="consent" type="checkbox" value="yes" required>
+              <label for="consent" data-i18n="f_consent">I agree that Aspiral Networks Private Limited may contact me
+                by phone, WhatsApp, SMS or email about the YardStore seller app. I have read the <a
+                  href="/products/yard/privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>. I can
+                withdraw this consent at any time.</label>
+            </div>
+
+            <input type="hidden" name="utm_source" id="utm_source">
+            <input type="hidden" name="utm_medium" id="utm_medium">
+            <input type="hidden" name="utm_campaign" id="utm_campaign">
+            <input type="hidden" name="utm_content" id="utm_content">
+            <!-- Records which language the page and consent text were shown in -->
+            <input type="hidden" name="page_language" id="page_language" value="en">
+
+            <button class="btn" type="submit"><i class="fa-solid fa-phone-volume" aria-hidden="true"></i><span
+                data-i18n="cta">Request a call back</span></button>
+            <p class="formnote"><i class="fa-solid fa-clock" aria-hidden="true"></i> <span data-i18n="f_note">Takes 1
+                minute. No payment needed now.</span></p>
+            <p class="formnote privacy"><i class="fa-solid fa-lock" aria-hidden="true"></i> <span
+                data-i18n="f_privacy">Your details reach our team through FormSubmit, a third-party form service. We
+                use them only to contact you about YardStore.</span></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= WHAT YOU MISS OFFLINE ================= -->
+    <section class="missing" aria-labelledby="miss-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2 id="miss-title" data-i18n="m_h2">What staying offline is costing your shop</h2>
+          <p data-i18n="m_p">Your customers still live next door. They just shop from their phones now. Here is a
+            normal day, with and without YardStore.</p>
+        </div>
+
+        <div class="col-keys" aria-hidden="true"><span data-i18n="k_when">When this happens</span><span
+            data-i18n="k_off">Shop offline</span><span data-i18n="k_on">Shop on YardStore</span></div>
+        <div class="scenes">
+          <div class="scene">
+            <div class="moment"><i class="fa-solid fa-moon" aria-hidden="true"></i><span data-i18n="s1m">A family two
+                streets away needs atta and milk at 9 pm</span></div>
+            <div class="off"><i class="fa-solid fa-xmark" aria-hidden="true"></i><span><span class="k"
+                  data-i18n="k_off_s">Offline</span><span data-i18n="s1o">They open an app, and your shop isn't on
+                  it.</span></span></div>
+            <div class="on"><i class="fa-solid fa-check" aria-hidden="true"></i><span><span class="k"
+                  data-i18n="k_on_s">On YardStore</span><span data-i18n="s1y">They see your shop on YardBuy and order
+                  from you.</span></span></div>
+          </div>
+          <div class="scene">
+            <div class="moment"><i class="fa-solid fa-person-walking-arrow-right" aria-hidden="true"></i><span
+                data-i18n="s2m">A regular customer moves to a new building nearby</span></div>
+            <div class="off"><i class="fa-solid fa-xmark" aria-hidden="true"></i><span><span class="k"
+                  data-i18n="k_off_s">Offline</span><span data-i18n="s2o">You don't have their number. They quietly
+                  stop coming.</span></span></div>
+            <div class="on"><i class="fa-solid fa-check" aria-hidden="true"></i><span><span class="k"
+                  data-i18n="k_on_s">On YardStore</span><span data-i18n="s2y">Their points and order history keep them
+                  ordering from you.</span></span></div>
+          </div>
+          <div class="scene">
+            <div class="moment"><i class="fa-solid fa-tags" aria-hidden="true"></i><span data-i18n="s3m">New stock
+                arrives, or you run a festival discount</span></div>
+            <div class="off"><i class="fa-solid fa-xmark" aria-hidden="true"></i><span><span class="k"
+                  data-i18n="k_off_s">Offline</span><span data-i18n="s3o">Only people who walk past your board find
+                  out.</span></span></div>
+            <div class="on"><i class="fa-solid fa-check" aria-hidden="true"></i><span><span class="k"
+                  data-i18n="k_on_s">On YardStore</span><span data-i18n="s3y">Your past buyers get a notification on
+                  their phone.</span></span></div>
+          </div>
+          <div class="scene">
+            <div class="moment"><i class="fa-solid fa-users-line" aria-hidden="true"></i><span data-i18n="s4m">Five
+                customers wait at the counter in the evening rush</span></div>
+            <div class="off"><i class="fa-solid fa-xmark" aria-hidden="true"></i><span><span class="k"
+                  data-i18n="k_off_s">Offline</span><span data-i18n="s4o">Bills written by hand, totals done in your
+                  head.</span></span></div>
+            <div class="on"><i class="fa-solid fa-check" aria-hidden="true"></i><span><span class="k"
+                  data-i18n="k_on_s">On YardStore</span><span data-i18n="s4y">Bill in seconds and print it on thermal
+                  printer.</span></span></div>
+          </div>
+          <div class="scene">
+            <div class="moment"><i class="fa-solid fa-file-invoice" aria-hidden="true"></i><span data-i18n="s5m">Month
+                end, and you need your sales and tax figures</span></div>
+            <div class="off"><i class="fa-solid fa-xmark" aria-hidden="true"></i><span><span class="k"
+                  data-i18n="k_off_s">Offline</span><span data-i18n="s5o">Hours with notebooks and a
+                  calculator.</span></span></div>
+            <div class="on"><i class="fa-solid fa-check" aria-hidden="true"></i><span><span class="k"
+                  data-i18n="k_on_s">On YardStore</span><span data-i18n="s5y">Sales and tax reports are ready in the
+                  app.</span></span></div>
+          </div>
+        </div>
+
+        <div class="missing-cta">
+          <a class="btn" href="#interest"><i class="fa-solid fa-phone" aria-hidden="true"></i><span
+              data-i18n="cta">Request a call back</span></a>
+          <p data-i18n="m_only">Founding offer for the first 100 sellers only.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FEATURES ================= -->
+    <section aria-labelledby="feat-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2 id="feat-title" data-i18n="ft_h2">One app for your counter and your online orders</h2>
+          <p data-i18n="ft_p">Everything you do in the shop today, plus everything you are missing online.</p>
+        </div>
+
+        <div class="groups">
+          <div class="group">
+            <div class="group-head">
+              <span class="badge"><i class="fa-solid fa-bag-shopping" aria-hidden="true"></i></span>
+              <div>
+                <h3 data-i18n="g1h">Get online orders</h3>
+                <p data-i18n="g1p">Buyers near you order from your shop on YardBuy.</p>
+              </div>
+            </div>
+            <ul class="feat">
+              <li><i class="fa-solid fa-cart-arrow-down" aria-hidden="true"></i>
+                <div><b data-i18n="f1b">Online orders</b><span data-i18n="f1s">Accept orders for delivery or pickup. You
+                    decide which orders to take.</span></div>
+              </li>
+              <li><i class="fa-solid fa-clipboard-list" aria-hidden="true"></i>
+                <div><b data-i18n="f2b">Organised order details</b><span data-i18n="f2s">Every order with items, address
+                    and status in one list. No lost slips.</span></div>
+              </li>
+              <li><i class="fa-solid fa-comments" aria-hidden="true"></i>
+                <div><b data-i18n="f3b">Order chat</b><span data-i18n="f3s">Talk to the buyer about an order, and share
+                    photos and files.</span></div>
+              </li>
+              <li><i class="fa-solid fa-bell" aria-hidden="true"></i>
+                <div><b data-i18n="f4b">Promotional notifications</b><span data-i18n="f4s">Tell past buyers about new
+                    stock and offers, straight to their phone.</span></div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="group">
+            <div class="group-head">
+              <span class="badge"><i class="fa-solid fa-cash-register" aria-hidden="true"></i></span>
+              <div>
+                <h3 data-i18n="g2h">Billing at the counter</h3>
+                <p data-i18n="g2p">Faster billing for customers who walk in.</p>
+              </div>
+            </div>
+            <ul class="feat">
+              <li><i class="fa-solid fa-person-walking" aria-hidden="true"></i>
+                <div><b data-i18n="f5b">Walk-in customer billing</b><span data-i18n="f5s">Make a bill in seconds for
+                    customers at your counter.</span></div>
+              </li>
+              <li><i class="fa-solid fa-file-invoice" aria-hidden="true"></i>
+                <div><b data-i18n="f6b">Invoicing</b><span data-i18n="f6s">Proper invoices for online and walk-in
+                    sales.</span></div>
+              </li>
+              <li><i class="fa-solid fa-print" aria-hidden="true"></i>
+                <div><b data-i18n="f7b">Bill printing on your printer</b><span data-i18n="f7s">Connect the thermal
+                    printer you already have.</span>
+                  <div class="chips"><em><i class="fa-brands fa-bluetooth-b" aria-hidden="true"></i>Bluetooth</em><em><i
+                        class="fa-solid fa-network-wired" aria-hidden="true"></i>LAN</em></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="group">
+            <div class="group-head">
+              <span class="badge"><i class="fa-solid fa-heart" aria-hidden="true"></i></span>
+              <div>
+                <h3 data-i18n="g3h">Keep customers coming back</h3>
+                <p data-i18n="g3p">Turn one-time buyers into regulars.</p>
+              </div>
+            </div>
+            <ul class="feat">
+              <li><i class="fa-solid fa-address-book" aria-hidden="true"></i>
+                <div><b data-i18n="f8b">Customer relations</b><span data-i18n="f8s">Know your customers and what they
+                    usually buy.</span></div>
+              </li>
+              <li><i class="fa-solid fa-award" aria-hidden="true"></i>
+                <div><b data-i18n="f9b">Loyalty membership points</b><span data-i18n="f9s">Reward regular buyers with
+                    points you control.</span></div>
+              </li>
+              <li><i class="fa-solid fa-percent" aria-hidden="true"></i>
+                <div><b data-i18n="f10b">Discounts and offers</b><span data-i18n="f10s">Run your own discounts and
+                    festival offers whenever you want.</span></div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="group">
+            <div class="group-head">
+              <span class="badge"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></span>
+              <div>
+                <h3 data-i18n="g4h">Know your numbers</h3>
+                <p data-i18n="g4p">See how your shop is doing, without the notebook.</p>
+              </div>
+            </div>
+            <ul class="feat">
+              <li><i class="fa-solid fa-chart-column" aria-hidden="true"></i>
+                <div><b data-i18n="f11b">Sales reports</b><span data-i18n="f11s">Daily and monthly sales, best-selling
+                    items, online and walk-in together.</span></div>
+              </li>
+              <li><i class="fa-solid fa-receipt" aria-hidden="true"></i>
+                <div><b data-i18n="f12b">Tax reports</b><span data-i18n="f12s">Tax figures from your bills, ready when
+                    you or your accountant need them.</span></div>
+              </li>
+              <li><i class="fa-solid fa-boxes-stacked" aria-hidden="true"></i>
+                <div><b data-i18n="f13b">Stock and reporting</b><span data-i18n="f13s">Update stock and track what
+                    moves, all from your phone.</span></div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= HOW YARD WORKS ================= -->
+    <section class="how" aria-labelledby="how-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2 id="how-title" data-i18n="h_h2">How Yard works</h2>
+          <p data-i18n="h_p">Yard is a technology platform that connects local shops with buyers nearby. The sale is
+            between you and your customer.</p>
+        </div>
+        <div class="flow">
+          <div class="node">
+            <i class="fa-solid fa-mobile-screen big" aria-hidden="true"></i>
+            <h3>YardBuy</h3>
+            <p data-i18n="n1p">The buyer app. People near your shop browse your products and place orders.</p>
+          </div>
+          <div class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="node">
+            <i class="fa-solid fa-store big" aria-hidden="true"></i>
+            <h3>YardStore</h3>
+            <p data-i18n="n2p">Your seller app. You see the order, accept it, bill it and deliver or keep it ready for
+              pickup.</p>
+          </div>
+          <div class="arrow" aria-hidden="true"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="node">
+            <i class="fa-solid fa-handshake big" aria-hidden="true"></i>
+            <h3 data-i18n="n3h">You get paid</h3>
+            <p data-i18n="n3p">The buyer pays you when the order is delivered or collected. The money never passes
+              through us.</p>
+          </div>
+        </div>
+        <div class="direct">
+          <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+          <p data-i18n="direct">Buyers pay you directly in cash or by UPI. You set your prices, you accept your orders,
+            and you keep 100% of every sale.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= OFFER ================= -->
+    <section aria-labelledby="offer-title">
+      <div class="wrap">
+        <div class="offer-box">
+          <div>
+            <h2 id="offer-title" data-i18n="o_h2">No commission. And a free first year for early sellers.</h2>
+            <p data-i18n="o_p">The first 100 sellers who join get a 1-year YardStore subscription free. After that, a
+              simple monthly plan. We never take a cut of your orders.</p>
+            <p style="margin-top:20px"><a class="btn gold" href="#interest"><i class="fa-solid fa-ticket"
+                  aria-hidden="true"></i><span data-i18n="o_cta">Claim my place</span></a></p>
+          </div>
+          <ul class="pledge">
+            <li><i class="fa-solid fa-ban" aria-hidden="true"></i><span data-i18n="pl1">0% commission on every
+                order</span></li>
+            <li><i class="fa-solid fa-gift" aria-hidden="true"></i><span data-i18n="pl2">1-year subscription free for
+                the first 100 sellers</span></li>
+            <li><i class="fa-solid fa-indian-rupee-sign" aria-hidden="true"></i><span data-i18n="pl3">Payments go
+                straight to you</span></li>
+            <li><i class="fa-solid fa-headset" aria-hidden="true"></i><span data-i18n="pl4">Setup help on call, in
+                your language</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= STEPS ================= -->
+    <section style="padding-top:0" aria-labelledby="steps-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2 id="steps-title" data-i18n="st_h2">Start in three steps</h2>
+        </div>
+        <ol class="steps">
+          <li>
+            <h3 data-i18n="st1h">Fill in the form</h3>
+            <p data-i18n="st1p">Your name, number and shop details. It takes a minute.</p>
+          </li>
+          <li>
+            <h3 data-i18n="st2h">We call you back</h3>
+            <p data-i18n="st2p">We explain the app in your language and help with verification.</p>
+          </li>
+          <li>
+            <h3 data-i18n="st3h">Add products, take orders</h3>
+            <p data-i18n="st3p">Set up your shop and start getting orders from nearby buyers.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section style="background:var(--paper)" aria-labelledby="faq-title">
+      <div class="wrap faq">
+        <div class="sec-head">
+          <h2 id="faq-title" data-i18n="faq_h2">Questions shop owners ask</h2>
+        </div>
+        <details>
+          <summary><span data-i18n="q1">What does it cost?</span><i class="fa-solid fa-chevron-down"
+              aria-hidden="true"></i></summary>
+          <p data-i18n="a1">There is no commission on orders. Sellers pay a simple monthly plan, and the first 100
+            sellers get the first year free. See the <a href="/products/yard/seller/pricing.html">plans and
+              prices</a>.</p>
+        </details>
+        <details>
+          <summary><span data-i18n="q2">How do I get paid?</span><i class="fa-solid fa-chevron-down"
+              aria-hidden="true"></i></summary>
+          <p data-i18n="a2">The buyer pays you directly when the order is delivered or collected, in cash or by UPI.
+            Yard does not hold your money.</p>
+        </details>
+        <details>
+          <summary><span data-i18n="q3">Can I use it for customers who walk into my shop?</span><i
+              class="fa-solid fa-chevron-down" aria-hidden="true"></i></summary>
+          <p data-i18n="a3">Yes. You can bill walk-in customers, print bills and give them loyalty points, the same as
+            online orders.</p>
+        </details>
+        <details>
+          <summary><span data-i18n="q4">Will it work with my thermal printer?</span><i class="fa-solid fa-chevron-down"
+              aria-hidden="true"></i></summary>
+          <p data-i18n="a4">YardStore connects to thermal printers over Bluetooth or LAN. Tell us your printer model on
+            the call and we will help you connect it.</p>
+        </details>
+        <details>
+          <summary><span data-i18n="q5">Do I need a computer?</span><i class="fa-solid fa-chevron-down"
+              aria-hidden="true"></i></summary>
+          <p data-i18n="a5">No. The YardStore app runs on Android and iPhone.</p>
+        </details>
+        <details>
+          <summary><span data-i18n="q6">What do I need to register?</span><i class="fa-solid fa-chevron-down"
+              aria-hidden="true"></i></summary>
+          <p data-i18n="a6">Your shop details and identity verification. Our team guides you through it on the call.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <!-- ================= FINAL CTA ================= -->
+    <section class="final" aria-labelledby="final-title">
+      <div class="wrap">
+        <h2 id="final-title" data-i18n="fin_h2">Your customers are already online. Join them.</h2>
+        <p data-i18n="fin_p">Places in the founding offer are limited to the first 100 sellers. Request a call and we
+          will help you start.</p>
+        <a class="btn gold" href="#interest"><i class="fa-solid fa-phone" aria-hidden="true"></i><span
+            data-i18n="cta">Request a call back</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <nav aria-label="Legal">
+        <a href="/products/yard/terms-and-conditions.html" data-i18n="ft_terms">Terms</a>
+        <a href="/products/yard/privacy-policy.html" data-i18n="ft_privacy">Privacy Policy</a>
+        <a href="/products/yard/grievance-redressal.html" data-i18n="ft_griev">Grievance Redressal</a>
+        <a href="/contact.html" data-i18n="ft_contact">Contact</a>
+      </nav>
+      <p>&copy; Aspiral Networks Private Limited.</p>
+      <p class="disclaim" data-i18n="disclaim">Yard (YardStore and YardBuy) is a technology platform that connects
+        sellers with buyers. Sales are made directly between sellers and buyers, and payments go from the buyer to the
+        seller.</p>
+    </div>
+  </footer>
+
+  <div class="mobile-cta" id="mcta">
+    <p><b data-i18n="mc_b">0% commission</b><span data-i18n="mc_s">First 100 sellers: 1 year free</span></p>
+    <a class="btn sm" href="#interest" data-i18n="cta">Request a call back</a>
+  </div>
+
+  <script>
+    /* ---------- Translations ----------
+       English is read from the page itself, so only Kannada and Hindi live here.
+       To edit a line, change it in the matching language block (same key). */
+    var I18N = {
+      kn: {
+        _title: "ನಿಮ್ಮ ಅಂಗಡಿಯ ಹತ್ತಿರದ ಗ್ರಾಹಕರಿಂದ ಆರ್ಡರ್ ಪಡೆಯಿರಿ | YardStore",
+        langLabel: "ಭಾಷೆ",
+        strip: "ಮೊದಲ 100 ಮಾರಾಟಗಾರರಿಗೆ <b>1 ವರ್ಷದ ಚಂದಾದಾರಿಕೆ ಉಚಿತ</b>. ಆರ್ಡರ್‌ಗಳ ಮೇಲೆ ಯಾವತ್ತೂ ಕಮಿಷನ್ ಇಲ್ಲ.",
+        tagline: "ಆನ್‌ಲೈನ್‌ಗೆ ಬನ್ನಿ. ಇನ್ನಷ್ಟು ಬೆಳೆಯಿರಿ.",
+        cta: "ಕಾಲ್ ಬ್ಯಾಕ್ ಪಡೆಯಿರಿ",
+        h1: "ನಿಮ್ಮ ನೆರೆಹೊರೆಯವರು ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ಆರ್ಡರ್ ಮಾಡುತ್ತಿದ್ದಾರೆ. ಅವರು ನಿಮ್ಮಿಂದಲೇ ಆರ್ಡರ್ ಮಾಡುವಂತೆ ಮಾಡಿ.",
+        lead: "ನಿಮ್ಮ ಅಂಗಡಿಯನ್ನು YardStore ನಲ್ಲಿ ಸೇರಿಸಿ. ಹತ್ತಿರದ ಗ್ರಾಹಕರು YardBuy ಆ್ಯಪ್‌ನಲ್ಲಿ ನಿಮ್ಮ ಅಂಗಡಿಯನ್ನು ಹುಡುಕಿ, ಆರ್ಡರ್ ಮಾಡಿ, ಹಣವನ್ನು ನೇರವಾಗಿ ನಿಮಗೆ ಪಾವತಿಸುತ್ತಾರೆ.",
+        p1: "ಪ್ರತಿ ಆರ್ಡರ್ ಮೇಲೆ ಶೂನ್ಯ ಕಮಿಷನ್",
+        p2: "ಗ್ರಾಹಕರು ನಗದು ಅಥವಾ UPI ಮೂಲಕ ನೇರವಾಗಿ ನಿಮಗೆ ಪಾವತಿಸುತ್ತಾರೆ",
+        p3: "ನಿಮ್ಮ ಫೋನ್‌ನಲ್ಲೇ ಕೆಲಸ ಮಾಡುತ್ತದೆ, ನಿಮ್ಮ ಥರ್ಮಲ್ ಪ್ರಿಂಟರ್ ಜೊತೆ ಹೊಂದಿಕೊಳ್ಳುತ್ತದೆ",
+        r_shop: "ನಿಮ್ಮ ಅಂಗಡಿಯ ಹೆಸರು",
+        r_via: "YardBuy ಮೂಲಕ ಆರ್ಡರ್ &nbsp;|&nbsp; 1.2 ಕಿ.ಮೀ ದೂರ",
+        r_new: "ಹೊಸ ಆನ್‌ಲೈನ್ ಆರ್ಡರ್",
+        r_i1: "ಗೋಧಿ ಹಿಟ್ಟು 5 ಕೆಜಿ",
+        r_i2: "ತೊಗರಿ ಬೇಳೆ 1 ಕೆಜಿ",
+        r_i3: "ಹಾಲು 1 ಲೀ x 2",
+        r_pts: "ಬಳಸಿದ ಲಾಯಲ್ಟಿ ಪಾಯಿಂಟ್",
+        r_total: "ಒಟ್ಟು",
+        r_paid: "ಅಂಗಡಿಗೆ ಪಾವತಿ (UPI)",
+        r_comm: "ಪ್ಲಾಟ್‌ಫಾರ್ಮ್ ಕಮಿಷನ್",
+        r_thanks: "+10 ಪಾಯಿಂಟ್ ಗಳಿಸಿದ್ದೀರಿ. ಧನ್ಯವಾದ, ಮತ್ತೆ ಬನ್ನಿ!",
+        f_sub: "ನಿಮ್ಮ ಅಂಗಡಿಯ ಬಗ್ಗೆ ತಿಳಿಸಿ. ನಾವು ನಿಮಗೆ ಕರೆ ಮಾಡಿ, ನಿಮ್ಮ ಭಾಷೆಯಲ್ಲಿ ಆ್ಯಪ್ ವಿವರಿಸಿ, ಪ್ರಾರಂಭಿಸಲು ಸಹಾಯ ಮಾಡುತ್ತೇವೆ.",
+        f_seat: "<b>ಸ್ಥಾಪಕ ಮಾರಾಟಗಾರರ ಆಫರ್:</b> ಮೊದಲ 100 ಮಾರಾಟಗಾರರಿಗೆ 1 ವರ್ಷದ ಚಂದಾದಾರಿಕೆ ಉಚಿತ.",
+        f_name: "ನಿಮ್ಮ ಹೆಸರು",
+        f_mobile: "ಮೊಬೈಲ್ ಸಂಖ್ಯೆ",
+        f_mobile_ph: "10 ಅಂಕಿಯ ಸಂಖ್ಯೆ",
+        f_mobile_err: "6, 7, 8 ಅಥವಾ 9 ರಿಂದ ಪ್ರಾರಂಭವಾಗುವ 10 ಅಂಕಿಯ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ ನಮೂದಿಸಿ",
+        f_shop: "ಅಂಗಡಿಯ ಹೆಸರು",
+        f_city: "ನಗರ ಅಥವಾ ಊರು",
+        f_type: "ನೀವು ಏನು ಮಾರಾಟ ಮಾಡುತ್ತೀರಿ?",
+        f_select: "ಆಯ್ಕೆಮಾಡಿ",
+        t_convenience: "ದಿನಸಿ / ಜನರಲ್ ಸ್ಟೋರ್",
+        t_fruit: "ಹಣ್ಣು ಮತ್ತು ತರಕಾರಿ",
+        t_supermarket: "ಸೂಪರ್‌ಮಾರ್ಕೆಟ್",
+        t_electronics: "ಎಲೆಕ್ಟ್ರಾನಿಕ್ಸ್",
+        t_furniture: "ಪೀಠೋಪಕರಣ (ಫರ್ನಿಚರ್)",
+        t_appliance: "ಗೃಹೋಪಯೋಗಿ ಉಪಕರಣಗಳು",
+        t_hardware: "ಹಾರ್ಡ್‌ವೇರ್",
+        t_beauty: "ಸೌಂದರ್ಯ ವರ್ಧಕಗಳು (ಬ್ಯೂಟಿ)",
+        t_pet: "ಸಾಕುಪ್ರಾಣಿ ಅಂಗಡಿ",
+        t_computer: "ಕಂಪ್ಯೂಟರ್ ಅಂಗಡಿ",
+        t_other: "ಇತರೆ",
+        f_lang: "ಕರೆಗೆ ನಿಮ್ಮ ಆದ್ಯತೆಯ ಭಾಷೆ",
+        l_hi: "ಹಿಂದಿ", l_en: "ಇಂಗ್ಲಿಷ್", l_kn: "ಕನ್ನಡ", l_ta: "ತಮಿಳು",
+        f_sending: "ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ...",
+        f_privacy: "ನಿಮ್ಮ ವಿವರಗಳು ಮೂರನೇ ವ್ಯಕ್ತಿಯ ಫಾರ್ಮ್ ಸೇವೆಯಾದ FormSubmit ಮೂಲಕ ನಮ್ಮ ತಂಡಕ್ಕೆ ತಲುಪುತ್ತವೆ. YardStore ಬಗ್ಗೆ ನಿಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸಲು ಮಾತ್ರ ನಾವು ಇವುಗಳನ್ನು ಬಳಸುತ್ತೇವೆ.",
+        f_consent: "Aspiral Networks Private Limited ನನ್ನನ್ನು YardStore ಮಾರಾಟಗಾರರ ಆ್ಯಪ್ ಬಗ್ಗೆ ಫೋನ್, WhatsApp, SMS ಅಥವಾ ಇಮೇಲ್ ಮೂಲಕ ಸಂಪರ್ಕಿಸಲು ನಾನು ಒಪ್ಪುತ್ತೇನೆ. ನಾನು <a href=\"/products/yard/privacy-policy.html\" target=\"_blank\" rel=\"noopener\">ಗೌಪ್ಯತಾ ನೀತಿ</a>ಯನ್ನು ಓದಿದ್ದೇನೆ. ಈ ಒಪ್ಪಿಗೆಯನ್ನು ಯಾವಾಗ ಬೇಕಾದರೂ ಹಿಂಪಡೆಯಬಹುದು.",
+        f_note: "1 ನಿಮಿಷ ಸಾಕು. ಈಗ ಯಾವುದೇ ಪಾವತಿ ಬೇಕಿಲ್ಲ.",
+        m_h2: "ಆಫ್‌ಲೈನ್‌ನಲ್ಲಿ ಉಳಿಯುವುದರಿಂದ ನಿಮ್ಮ ಅಂಗಡಿ ಏನು ಕಳೆದುಕೊಳ್ಳುತ್ತಿದೆ",
+        m_p: "ನಿಮ್ಮ ಗ್ರಾಹಕರು ಈಗಲೂ ಪಕ್ಕದಲ್ಲೇ ಇದ್ದಾರೆ. ಆದರೆ ಈಗ ಅವರು ಫೋನ್‌ನಲ್ಲಿ ಖರೀದಿಸುತ್ತಾರೆ. YardStore ಇದ್ದಾಗ ಮತ್ತು ಇಲ್ಲದಾಗ ಒಂದು ಸಾಮಾನ್ಯ ದಿನ ಹೇಗಿರುತ್ತದೆ ನೋಡಿ.",
+        k_when: "ಹೀಗಾದಾಗ",
+        k_off: "ಆಫ್‌ಲೈನ್ ಅಂಗಡಿ",
+        k_on: "YardStore ನಲ್ಲಿರುವ ಅಂಗಡಿ",
+        k_off_s: "ಆಫ್‌ಲೈನ್",
+        k_on_s: "YardStore ನಲ್ಲಿ",
+        s1m: "ಎರಡು ರಸ್ತೆ ಆಚೆಯ ಕುಟುಂಬಕ್ಕೆ ರಾತ್ರಿ 9 ಗಂಟೆಗೆ ಹಿಟ್ಟು ಮತ್ತು ಹಾಲು ಬೇಕು",
+        s1o: "ಅವರು ಒಂದು ಆ್ಯಪ್ ತೆರೆಯುತ್ತಾರೆ, ಅದರಲ್ಲಿ ನಿಮ್ಮ ಅಂಗಡಿ ಇಲ್ಲ.",
+        s1y: "ಅವರಿಗೆ YardBuy ನಲ್ಲಿ ನಿಮ್ಮ ಅಂಗಡಿ ಕಾಣುತ್ತದೆ, ನಿಮ್ಮಿಂದಲೇ ಆರ್ಡರ್ ಮಾಡುತ್ತಾರೆ.",
+        s2m: "ಒಬ್ಬ ಖಾಯಂ ಗ್ರಾಹಕರು ಹತ್ತಿರದ ಹೊಸ ಕಟ್ಟಡಕ್ಕೆ ಮನೆ ಬದಲಿಸುತ್ತಾರೆ",
+        s2o: "ನಿಮ್ಮ ಬಳಿ ಅವರ ನಂಬರ್ ಇಲ್ಲ. ಅವರು ಸದ್ದಿಲ್ಲದೆ ಬರುವುದನ್ನು ನಿಲ್ಲಿಸುತ್ತಾರೆ.",
+        s2y: "ಅವರ ಪಾಯಿಂಟ್‌ಗಳು ಮತ್ತು ಆರ್ಡರ್ ಇತಿಹಾಸ ಅವರನ್ನು ನಿಮ್ಮ ಜೊತೆಯೇ ಉಳಿಸುತ್ತದೆ.",
+        s3m: "ಹೊಸ ಸ್ಟಾಕ್ ಬರುತ್ತದೆ, ಅಥವಾ ನೀವು ಹಬ್ಬದ ರಿಯಾಯಿತಿ ನೀಡುತ್ತೀರಿ",
+        s3o: "ನಿಮ್ಮ ಬೋರ್ಡ್ ಮುಂದೆ ಹಾದುಹೋಗುವವರಿಗೆ ಮಾತ್ರ ತಿಳಿಯುತ್ತದೆ.",
+        s3y: "ನಿಮ್ಮ ಹಳೆಯ ಗ್ರಾಹಕರ ಫೋನ್‌ಗೆ ನೋಟಿಫಿಕೇಶನ್ ಹೋಗುತ್ತದೆ.",
+        s4m: "ಸಂಜೆಯ ರಶ್‌ನಲ್ಲಿ ಕೌಂಟರ್ ಬಳಿ ಐದು ಗ್ರಾಹಕರು ಕಾಯುತ್ತಿದ್ದಾರೆ",
+        s4o: "ಕೈಯಲ್ಲಿ ಬರೆದ ಬಿಲ್, ತಲೆಯಲ್ಲೇ ಲೆಕ್ಕ.",
+        s4y: "ಕ್ಷಣಗಳಲ್ಲಿ ಬಿಲ್ ಮಾಡಿ, ಥರ್ಮಲ್ ಪ್ರಿಂಟರ್‌ನಲ್ಲಿ ಪ್ರಿಂಟ್ ಮಾಡಿ.",
+        s5m: "ತಿಂಗಳ ಕೊನೆ, ನಿಮಗೆ ಮಾರಾಟ ಮತ್ತು ತೆರಿಗೆ ಲೆಕ್ಕ ಬೇಕು",
+        s5o: "ನೋಟ್‌ಬುಕ್ ಮತ್ತು ಕ್ಯಾಲ್ಕುಲೇಟರ್ ಜೊತೆ ಗಂಟೆಗಟ್ಟಲೆ ಕೆಲಸ.",
+        s5y: "ಮಾರಾಟ ಮತ್ತು ತೆರಿಗೆ ವರದಿಗಳು ಆ್ಯಪ್‌ನಲ್ಲೇ ಸಿದ್ಧ.",
+        m_only: "ಸ್ಥಾಪಕ ಆಫರ್ ಮೊದಲ 100 ಮಾರಾಟಗಾರರಿಗೆ ಮಾತ್ರ.",
+        ft_h2: "ನಿಮ್ಮ ಕೌಂಟರ್ ಮತ್ತು ಆನ್‌ಲೈನ್ ಆರ್ಡರ್‌ಗಳಿಗೆ ಒಂದೇ ಆ್ಯಪ್",
+        ft_p: "ಇಂದು ಅಂಗಡಿಯಲ್ಲಿ ನೀವು ಮಾಡುವ ಎಲ್ಲವೂ, ಜೊತೆಗೆ ಆನ್‌ಲೈನ್‌ನಲ್ಲಿ ನೀವು ಕಳೆದುಕೊಳ್ಳುತ್ತಿರುವುದೆಲ್ಲವೂ.",
+        g1h: "ಆನ್‌ಲೈನ್ ಆರ್ಡರ್ ಪಡೆಯಿರಿ",
+        g1p: "ಹತ್ತಿರದ ಗ್ರಾಹಕರು YardBuy ನಲ್ಲಿ ನಿಮ್ಮ ಅಂಗಡಿಯಿಂದ ಆರ್ಡರ್ ಮಾಡುತ್ತಾರೆ.",
+        f1b: "ಆನ್‌ಲೈನ್ ಆರ್ಡರ್‌ಗಳು",
+        f1s: "ಡೆಲಿವರಿ ಅಥವಾ ಪಿಕಪ್ ಆರ್ಡರ್ ಸ್ವೀಕರಿಸಿ. ಯಾವ ಆರ್ಡರ್ ತೆಗೆದುಕೊಳ್ಳಬೇಕು ಎಂದು ನೀವೇ ನಿರ್ಧರಿಸಿ.",
+        f2b: "ವ್ಯವಸ್ಥಿತ ಆರ್ಡರ್ ವಿವರಗಳು",
+        f2s: "ಪ್ರತಿ ಆರ್ಡರ್‌ನ ವಸ್ತುಗಳು, ವಿಳಾಸ ಮತ್ತು ಸ್ಥಿತಿ ಒಂದೇ ಪಟ್ಟಿಯಲ್ಲಿ. ಚೀಟಿ ಕಳೆದುಹೋಗುವುದಿಲ್ಲ.",
+        f3b: "ಆರ್ಡರ್ ಚಾಟ್",
+        f3s: "ಆರ್ಡರ್ ಬಗ್ಗೆ ಗ್ರಾಹಕರ ಜೊತೆ ಮಾತನಾಡಿ, ಫೋಟೋ ಮತ್ತು ಫೈಲ್ ಹಂಚಿಕೊಳ್ಳಿ.",
+        f4b: "ಪ್ರಚಾರ ನೋಟಿಫಿಕೇಶನ್",
+        f4s: "ಹೊಸ ಸ್ಟಾಕ್ ಮತ್ತು ಆಫರ್‌ಗಳ ಬಗ್ಗೆ ಹಳೆಯ ಗ್ರಾಹಕರ ಫೋನ್‌ಗೆ ನೇರವಾಗಿ ತಿಳಿಸಿ.",
+        g2h: "ಕೌಂಟರ್‌ನಲ್ಲಿ ಬಿಲ್ಲಿಂಗ್",
+        g2p: "ಅಂಗಡಿಗೆ ಬರುವ ಗ್ರಾಹಕರಿಗೆ ವೇಗದ ಬಿಲ್ಲಿಂಗ್.",
+        f5b: "ವಾಕ್-ಇನ್ ಗ್ರಾಹಕರ ಬಿಲ್ಲಿಂಗ್",
+        f5s: "ಕೌಂಟರ್‌ನಲ್ಲಿರುವ ಗ್ರಾಹಕರಿಗೆ ಕ್ಷಣಗಳಲ್ಲಿ ಬಿಲ್ ಮಾಡಿ.",
+        f6b: "ಇನ್‌ವಾಯ್ಸಿಂಗ್",
+        f6s: "ಆನ್‌ಲೈನ್ ಮತ್ತು ಕೌಂಟರ್ ಮಾರಾಟ ಎರಡಕ್ಕೂ ಸರಿಯಾದ ಇನ್‌ವಾಯ್ಸ್.",
+        f7b: "ನಿಮ್ಮ ಪ್ರಿಂಟರ್‌ನಲ್ಲಿ ಬಿಲ್ ಪ್ರಿಂಟ್",
+        f7s: "ನಿಮ್ಮ ಬಳಿ ಈಗಾಗಲೇ ಇರುವ ಥರ್ಮಲ್ ಪ್ರಿಂಟರ್ ಅನ್ನೇ ಸಂಪರ್ಕಿಸಿ.",
+        g3h: "ಗ್ರಾಹಕರು ಮತ್ತೆ ಮತ್ತೆ ಬರುವಂತೆ ಮಾಡಿ",
+        g3p: "ಒಮ್ಮೆ ಬಂದವರನ್ನು ಖಾಯಂ ಗ್ರಾಹಕರನ್ನಾಗಿ ಮಾಡಿ.",
+        f8b: "ಗ್ರಾಹಕ ಸಂಬಂಧ",
+        f8s: "ನಿಮ್ಮ ಗ್ರಾಹಕರು ಯಾರು, ಅವರು ಸಾಮಾನ್ಯವಾಗಿ ಏನು ಖರೀದಿಸುತ್ತಾರೆ ಎಂದು ತಿಳಿಯಿರಿ.",
+        f9b: "ಲಾಯಲ್ಟಿ ಸದಸ್ಯತ್ವ ಪಾಯಿಂಟ್‌ಗಳು",
+        f9s: "ಖಾಯಂ ಗ್ರಾಹಕರಿಗೆ ನೀವೇ ನಿಯಂತ್ರಿಸುವ ಪಾಯಿಂಟ್‌ಗಳ ಬಹುಮಾನ ನೀಡಿ.",
+        f10b: "ರಿಯಾಯಿತಿ ಮತ್ತು ಆಫರ್‌ಗಳು",
+        f10s: "ಬೇಕಾದಾಗ ನಿಮ್ಮದೇ ರಿಯಾಯಿತಿ ಮತ್ತು ಹಬ್ಬದ ಆಫರ್ ನಡೆಸಿ.",
+        g4h: "ನಿಮ್ಮ ಲೆಕ್ಕ ತಿಳಿಯಿರಿ",
+        g4p: "ನೋಟ್‌ಬುಕ್ ಇಲ್ಲದೆ ನಿಮ್ಮ ಅಂಗಡಿ ಹೇಗೆ ನಡೆಯುತ್ತಿದೆ ನೋಡಿ.",
+        f11b: "ಮಾರಾಟ ವರದಿ",
+        f11s: "ದಿನದ ಮತ್ತು ತಿಂಗಳ ಮಾರಾಟ, ಹೆಚ್ಚು ಮಾರಾಟವಾಗುವ ವಸ್ತುಗಳು, ಆನ್‌ಲೈನ್ ಮತ್ತು ಕೌಂಟರ್ ಒಟ್ಟಿಗೆ.",
+        f12b: "ತೆರಿಗೆ ವರದಿ",
+        f12s: "ನಿಮ್ಮ ಬಿಲ್‌ಗಳಿಂದ ತೆರಿಗೆ ಲೆಕ್ಕ, ನಿಮಗೆ ಅಥವಾ ನಿಮ್ಮ ಅಕೌಂಟೆಂಟ್‌ಗೆ ಬೇಕಾದಾಗ ಸಿದ್ಧ.",
+        f13b: "ಸ್ಟಾಕ್ ಮತ್ತು ವರದಿಗಳು",
+        f13s: "ಸ್ಟಾಕ್ ಅಪ್‌ಡೇಟ್ ಮಾಡಿ, ಯಾವುದು ಮಾರಾಟವಾಗುತ್ತಿದೆ ನೋಡಿ, ಎಲ್ಲವೂ ಫೋನ್‌ನಿಂದಲೇ.",
+        h_h2: "Yard ಹೇಗೆ ಕೆಲಸ ಮಾಡುತ್ತದೆ",
+        h_p: "Yard ಸ್ಥಳೀಯ ಅಂಗಡಿಗಳನ್ನು ಹತ್ತಿರದ ಗ್ರಾಹಕರೊಂದಿಗೆ ಜೋಡಿಸುವ ತಂತ್ರಜ್ಞಾನ ವೇದಿಕೆ. ಮಾರಾಟ ನಿಮ್ಮ ಮತ್ತು ನಿಮ್ಮ ಗ್ರಾಹಕರ ನಡುವೆ ನಡೆಯುತ್ತದೆ.",
+        n1p: "ಗ್ರಾಹಕರ ಆ್ಯಪ್. ನಿಮ್ಮ ಅಂಗಡಿಯ ಹತ್ತಿರದ ಜನರು ನಿಮ್ಮ ವಸ್ತುಗಳನ್ನು ನೋಡಿ ಆರ್ಡರ್ ಮಾಡುತ್ತಾರೆ.",
+        n2p: "ನಿಮ್ಮ ಮಾರಾಟಗಾರರ ಆ್ಯಪ್. ನೀವು ಆರ್ಡರ್ ನೋಡಿ, ಸ್ವೀಕರಿಸಿ, ಬಿಲ್ ಮಾಡಿ, ಡೆಲಿವರಿ ಮಾಡುತ್ತೀರಿ ಅಥವಾ ಪಿಕಪ್‌ಗೆ ಸಿದ್ಧವಾಗಿಡುತ್ತೀರಿ.",
+        n3h: "ನಿಮಗೆ ಹಣ ಸಿಗುತ್ತದೆ",
+        n3p: "ಆರ್ಡರ್ ಡೆಲಿವರಿ ಆದಾಗ ಅಥವಾ ತೆಗೆದುಕೊಂಡು ಹೋದಾಗ ಗ್ರಾಹಕರು ನಿಮಗೆ ಪಾವತಿಸುತ್ತಾರೆ. ಹಣ ನಮ್ಮ ಮೂಲಕ ಹೋಗುವುದಿಲ್ಲ.",
+        direct: "ಗ್ರಾಹಕರು ನಗದು ಅಥವಾ UPI ಮೂಲಕ ನೇರವಾಗಿ ನಿಮಗೆ ಪಾವತಿಸುತ್ತಾರೆ. ಬೆಲೆ ನೀವೇ ನಿಗದಿಪಡಿಸುತ್ತೀರಿ, ಆರ್ಡರ್ ನೀವೇ ಸ್ವೀಕರಿಸುತ್ತೀರಿ, ಪ್ರತಿ ಮಾರಾಟದ 100% ನಿಮ್ಮದೇ.",
+        o_h2: "ಕಮಿಷನ್ ಇಲ್ಲ. ಆರಂಭಿಕ ಮಾರಾಟಗಾರರಿಗೆ ಮೊದಲ ವರ್ಷ ಉಚಿತ.",
+        o_p: "ಸೇರುವ ಮೊದಲ 100 ಮಾರಾಟಗಾರರಿಗೆ YardStore ನ 1 ವರ್ಷದ ಚಂದಾದಾರಿಕೆ ಉಚಿತ. ನಂತರ ಸರಳ ಮಾಸಿಕ ಪ್ಲಾನ್. ನಿಮ್ಮ ಆರ್ಡರ್‌ಗಳಲ್ಲಿ ನಾವು ಯಾವತ್ತೂ ಪಾಲು ತೆಗೆದುಕೊಳ್ಳುವುದಿಲ್ಲ.",
+        o_cta: "ನನ್ನ ಸ್ಥಾನ ಕಾಯ್ದಿರಿಸಿ",
+        pl1: "ಪ್ರತಿ ಆರ್ಡರ್ ಮೇಲೆ 0% ಕಮಿಷನ್",
+        pl2: "ಮೊದಲ 100 ಮಾರಾಟಗಾರರಿಗೆ 1 ವರ್ಷದ ಚಂದಾದಾರಿಕೆ ಉಚಿತ",
+        pl3: "ಹಣ ನೇರವಾಗಿ ನಿಮಗೆ",
+        pl4: "ಕರೆಯಲ್ಲಿ ಸೆಟಪ್ ಸಹಾಯ, ನಿಮ್ಮ ಭಾಷೆಯಲ್ಲಿ",
+        st_h2: "ಮೂರು ಹಂತಗಳಲ್ಲಿ ಪ್ರಾರಂಭಿಸಿ",
+        st1h: "ಫಾರ್ಮ್ ಭರ್ತಿ ಮಾಡಿ",
+        st1p: "ನಿಮ್ಮ ಹೆಸರು, ನಂಬರ್ ಮತ್ತು ಅಂಗಡಿಯ ವಿವರ. ಒಂದು ನಿಮಿಷ ಸಾಕು.",
+        st2h: "ನಾವು ನಿಮಗೆ ಕರೆ ಮಾಡುತ್ತೇವೆ",
+        st2p: "ನಿಮ್ಮ ಭಾಷೆಯಲ್ಲಿ ಆ್ಯಪ್ ವಿವರಿಸಿ, ಪರಿಶೀಲನೆಗೆ ಸಹಾಯ ಮಾಡುತ್ತೇವೆ.",
+        st3h: "ವಸ್ತುಗಳನ್ನು ಸೇರಿಸಿ, ಆರ್ಡರ್ ಪಡೆಯಿರಿ",
+        st3p: "ನಿಮ್ಮ ಅಂಗಡಿ ಸೆಟಪ್ ಮಾಡಿ, ಹತ್ತಿರದ ಗ್ರಾಹಕರಿಂದ ಆರ್ಡರ್ ಪಡೆಯಲು ಪ್ರಾರಂಭಿಸಿ.",
+        faq_h2: "ಅಂಗಡಿ ಮಾಲೀಕರು ಕೇಳುವ ಪ್ರಶ್ನೆಗಳು",
+        q1: "ಇದಕ್ಕೆ ಎಷ್ಟು ಖರ್ಚಾಗುತ್ತದೆ?",
+        a1: "ಆರ್ಡರ್‌ಗಳ ಮೇಲೆ ಕಮಿಷನ್ ಇಲ್ಲ. ಮಾರಾಟಗಾರರು ಸರಳ ಮಾಸಿಕ ಪ್ಲಾನ್ ಪಾವತಿಸುತ್ತಾರೆ, ಮೊದಲ 100 ಮಾರಾಟಗಾರರಿಗೆ ಮೊದಲ ವರ್ಷ ಉಚಿತ. <a href=\"/products/yard/seller/pricing.html\">ಪ್ಲಾನ್ ಮತ್ತು ಬೆಲೆಗಳನ್ನು</a> ನೋಡಿ.",
+        q2: "ನನಗೆ ಹಣ ಹೇಗೆ ಸಿಗುತ್ತದೆ?",
+        a2: "ಆರ್ಡರ್ ಡೆಲಿವರಿ ಆದಾಗ ಅಥವಾ ತೆಗೆದುಕೊಂಡು ಹೋದಾಗ ಗ್ರಾಹಕರು ನಗದು ಅಥವಾ UPI ಮೂಲಕ ನೇರವಾಗಿ ನಿಮಗೆ ಪಾವತಿಸುತ್ತಾರೆ. Yard ನಿಮ್ಮ ಹಣವನ್ನು ಇಟ್ಟುಕೊಳ್ಳುವುದಿಲ್ಲ.",
+        q3: "ಅಂಗಡಿಗೆ ನೇರವಾಗಿ ಬರುವ ಗ್ರಾಹಕರಿಗೂ ಇದನ್ನು ಬಳಸಬಹುದೇ?",
+        a3: "ಹೌದು. ವಾಕ್-ಇನ್ ಗ್ರಾಹಕರಿಗೆ ಬಿಲ್ ಮಾಡಬಹುದು, ಬಿಲ್ ಪ್ರಿಂಟ್ ಮಾಡಬಹುದು ಮತ್ತು ಲಾಯಲ್ಟಿ ಪಾಯಿಂಟ್ ನೀಡಬಹುದು, ಆನ್‌ಲೈನ್ ಆರ್ಡರ್‌ಗಳಂತೆಯೇ.",
+        q4: "ಇದು ನನ್ನ ಥರ್ಮಲ್ ಪ್ರಿಂಟರ್ ಜೊತೆ ಕೆಲಸ ಮಾಡುತ್ತದೆಯೇ?",
+        a4: "YardStore ಬ್ಲೂಟೂತ್ ಅಥವಾ LAN ಮೂಲಕ ಥರ್ಮಲ್ ಪ್ರಿಂಟರ್‌ಗೆ ಸಂಪರ್ಕ ಹೊಂದುತ್ತದೆ. ಕರೆಯಲ್ಲಿ ನಿಮ್ಮ ಪ್ರಿಂಟರ್ ಮಾಡೆಲ್ ತಿಳಿಸಿ, ಸಂಪರ್ಕಿಸಲು ನಾವು ಸಹಾಯ ಮಾಡುತ್ತೇವೆ.",
+        q5: "ನನಗೆ ಕಂಪ್ಯೂಟರ್ ಬೇಕೇ?",
+        a5: "ಬೇಡ. YardStore ಆ್ಯಪ್ Android ಮತ್ತು iPhone ನಲ್ಲಿ ಕೆಲಸ ಮಾಡುತ್ತದೆ.",
+        q6: "ನೋಂದಣಿಗೆ ಏನು ಬೇಕು?",
+        a6: "ನಿಮ್ಮ ಅಂಗಡಿಯ ವಿವರಗಳು ಮತ್ತು ಗುರುತಿನ ಪರಿಶೀಲನೆ. ಕರೆಯಲ್ಲಿ ನಮ್ಮ ತಂಡ ಮಾರ್ಗದರ್ಶನ ನೀಡುತ್ತದೆ.",
+        fin_h2: "ನಿಮ್ಮ ಗ್ರಾಹಕರು ಈಗಾಗಲೇ ಆನ್‌ಲೈನ್‌ನಲ್ಲಿದ್ದಾರೆ. ನೀವೂ ಸೇರಿ.",
+        fin_p: "ಸ್ಥಾಪಕ ಆಫರ್ ಮೊದಲ 100 ಮಾರಾಟಗಾರರಿಗೆ ಮಾತ್ರ. ಕರೆಗೆ ವಿನಂತಿಸಿ, ಪ್ರಾರಂಭಿಸಲು ನಾವು ಸಹಾಯ ಮಾಡುತ್ತೇವೆ.",
+        ft_terms: "ನಿಯಮಗಳು",
+        ft_privacy: "ಗೌಪ್ಯತಾ ನೀತಿ",
+        ft_griev: "ಕುಂದುಕೊರತೆ ಪರಿಹಾರ",
+        ft_contact: "ಸಂಪರ್ಕಿಸಿ",
+        disclaim: "Yard (YardStore ಮತ್ತು YardBuy) ಮಾರಾಟಗಾರರನ್ನು ಗ್ರಾಹಕರೊಂದಿಗೆ ಜೋಡಿಸುವ ತಂತ್ರಜ್ಞಾನ ವೇದಿಕೆ. ಮಾರಾಟ ನೇರವಾಗಿ ಮಾರಾಟಗಾರ ಮತ್ತು ಗ್ರಾಹಕರ ನಡುವೆ ನಡೆಯುತ್ತದೆ, ಹಣ ಗ್ರಾಹಕರಿಂದ ನೇರವಾಗಿ ಮಾರಾಟಗಾರರಿಗೆ ಹೋಗುತ್ತದೆ.",
+        mc_b: "0% ಕಮಿಷನ್",
+        mc_s: "ಮೊದಲ 100 ಮಾರಾಟಗಾರರು: 1 ವರ್ಷ ಉಚಿತ"
+      },
+
+      hi: {
+        _title: "अपनी दुकान के पास के ग्राहकों से ऑर्डर पाएं | YardStore",
+        langLabel: "भाषा",
+        strip: "पहले 100 विक्रेताओं को <b>1 साल का सब्सक्रिप्शन मुफ़्त</b>। ऑर्डर पर कभी कोई कमीशन नहीं।",
+        tagline: "ऑनलाइन आएं। आगे बढ़ें।",
+        cta: "कॉल बैक पाएं",
+        h1: "आपके पड़ोसी ऑनलाइन ऑर्डर कर रहे हैं। पक्का करें कि वे आपसे ऑर्डर करें।",
+        lead: "अपनी दुकान YardStore पर लाएं। आस-पास के ग्राहक YardBuy ऐप पर आपकी दुकान ढूंढते हैं, ऑर्डर करते हैं और पैसे सीधे आपको देते हैं।",
+        p1: "हर ऑर्डर पर ज़ीरो कमीशन",
+        p2: "ग्राहक सीधे आपको भुगतान करते हैं, नकद या UPI से",
+        p3: "आपके फ़ोन पर चलता है, आपके थर्मल प्रिंटर के साथ काम करता है",
+        r_shop: "आपकी दुकान का नाम",
+        r_via: "YardBuy से ऑर्डर &nbsp;|&nbsp; 1.2 किमी दूर",
+        r_new: "नया ऑनलाइन ऑर्डर",
+        r_i1: "गेहूं आटा 5 किलो",
+        r_i2: "तूर दाल 1 किलो",
+        r_i3: "दूध 1 ली x 2",
+        r_pts: "लॉयल्टी पॉइंट इस्तेमाल",
+        r_total: "कुल",
+        r_paid: "दुकान को भुगतान (UPI)",
+        r_comm: "प्लेटफ़ॉर्म कमीशन",
+        r_thanks: "+10 पॉइंट मिले। धन्यवाद, फिर आइए!",
+        f_sub: "अपनी दुकान के बारे में बताएं। हम आपको कॉल करेंगे, आपकी भाषा में ऐप समझाएंगे और शुरू करने में मदद करेंगे।",
+        f_seat: "<b>संस्थापक विक्रेता ऑफ़र:</b> पहले 100 विक्रेताओं को 1 साल का सब्सक्रिप्शन मुफ़्त।",
+        f_name: "आपका नाम",
+        f_mobile: "मोबाइल नंबर",
+        f_mobile_ph: "10 अंकों का नंबर",
+        f_mobile_err: "6, 7, 8 या 9 से शुरू होने वाला 10 अंकों का मोबाइल नंबर डालें",
+        f_shop: "दुकान का नाम",
+        f_city: "शहर या कस्बा",
+        f_type: "आप क्या बेचते हैं?",
+        f_select: "चुनें",
+        t_convenience: "किराना / जनरल स्टोर",
+        t_fruit: "फल और सब्ज़ियां",
+        t_supermarket: "सुपरमार्केट",
+        t_electronics: "इलेक्ट्रॉनिक्स",
+        t_furniture: "फ़र्नीचर",
+        t_appliance: "घरेलू उपकरण",
+        t_hardware: "हार्डवेयर",
+        t_beauty: "ब्यूटी / सौंदर्य प्रसाधन",
+        t_pet: "पेट स्टोर",
+        t_computer: "कंप्यूटर स्टोर",
+        t_other: "अन्य",
+        f_lang: "कॉल के लिए आपकी पसंदीदा भाषा",
+        l_hi: "हिंदी", l_en: "अंग्रेज़ी", l_kn: "कन्नड़", l_ta: "तमिल",
+        f_sending: "भेजा जा रहा है...",
+        f_privacy: "आपकी जानकारी FormSubmit नाम की एक थर्ड-पार्टी फ़ॉर्म सेवा के ज़रिए हमारी टीम तक पहुंचती है। हम इसका इस्तेमाल सिर्फ़ YardStore के बारे में आपसे संपर्क करने के लिए करते हैं।",
+        f_consent: "मैं सहमत हूं कि Aspiral Networks Private Limited मुझसे YardStore विक्रेता ऐप के बारे में फ़ोन, WhatsApp, SMS या ईमेल से संपर्क कर सकती है। मैंने <a href=\"/products/yard/privacy-policy.html\" target=\"_blank\" rel=\"noopener\">गोपनीयता नीति</a> पढ़ ली है। मैं यह सहमति कभी भी वापस ले सकता/सकती हूं।",
+        f_note: "सिर्फ़ 1 मिनट लगता है। अभी कोई भुगतान नहीं।",
+        m_h2: "ऑफ़लाइन रहकर आपकी दुकान क्या खो रही है",
+        m_p: "आपके ग्राहक अब भी पड़ोस में ही रहते हैं। बस अब वे फ़ोन से खरीदारी करते हैं। देखिए एक आम दिन, YardStore के साथ और उसके बिना।",
+        k_when: "जब ऐसा होता है",
+        k_off: "ऑफ़लाइन दुकान",
+        k_on: "YardStore पर दुकान",
+        k_off_s: "ऑफ़लाइन",
+        k_on_s: "YardStore पर",
+        s1m: "दो गली दूर एक परिवार को रात 9 बजे आटा और दूध चाहिए",
+        s1o: "वे एक ऐप खोलते हैं, और उस पर आपकी दुकान नहीं है।",
+        s1y: "उन्हें YardBuy पर आपकी दुकान दिखती है और वे आपसे ऑर्डर करते हैं।",
+        s2m: "एक नियमित ग्राहक पास की नई बिल्डिंग में शिफ़्ट हो जाता है",
+        s2o: "आपके पास उनका नंबर नहीं है। वे चुपचाप आना बंद कर देते हैं।",
+        s2y: "उनके पॉइंट और ऑर्डर हिस्ट्री उन्हें आपसे जोड़े रखते हैं।",
+        s3m: "नया माल आता है, या आप त्योहार पर छूट देते हैं",
+        s3o: "सिर्फ़ आपके बोर्ड के सामने से गुज़रने वालों को पता चलता है।",
+        s3y: "आपके पुराने ग्राहकों के फ़ोन पर सूचना पहुंच जाती है।",
+        s4m: "शाम की भीड़ में काउंटर पर पांच ग्राहक इंतज़ार कर रहे हैं",
+        s4o: "हाथ से लिखे बिल, मन में जोड़ा गया हिसाब।",
+        s4y: "सेकंडों में बिल बनाएं और थर्मल प्रिंटर पर प्रिंट करें।",
+        s5m: "महीने का अंत, और आपको बिक्री और टैक्स का हिसाब चाहिए",
+        s5o: "कॉपी और कैलकुलेटर के साथ घंटों की मेहनत।",
+        s5y: "बिक्री और टैक्स रिपोर्ट ऐप में तैयार मिलती हैं।",
+        m_only: "संस्थापक ऑफ़र सिर्फ़ पहले 100 विक्रेताओं के लिए।",
+        ft_h2: "काउंटर और ऑनलाइन ऑर्डर, दोनों के लिए एक ऐप",
+        ft_p: "दुकान में आज आप जो करते हैं वह सब, और ऑनलाइन जो छूट रहा है वह भी।",
+        g1h: "ऑनलाइन ऑर्डर पाएं",
+        g1p: "आस-पास के ग्राहक YardBuy पर आपकी दुकान से ऑर्डर करते हैं।",
+        f1b: "ऑनलाइन ऑर्डर",
+        f1s: "डिलीवरी या पिकअप के ऑर्डर लें। कौन सा ऑर्डर लेना है, यह आप तय करते हैं।",
+        f2b: "व्यवस्थित ऑर्डर विवरण",
+        f2s: "हर ऑर्डर का सामान, पता और स्थिति एक ही सूची में। कोई पर्ची नहीं खोती।",
+        f3b: "ऑर्डर चैट",
+        f3s: "ऑर्डर के बारे में ग्राहक से बात करें, फ़ोटो और फ़ाइलें भेजें।",
+        f4b: "प्रमोशनल सूचनाएं",
+        f4s: "नए माल और ऑफ़र की जानकारी सीधे पुराने ग्राहकों के फ़ोन पर भेजें।",
+        g2h: "काउंटर पर बिलिंग",
+        g2p: "दुकान पर आने वाले ग्राहकों के लिए तेज़ बिलिंग।",
+        f5b: "वॉक-इन ग्राहक बिलिंग",
+        f5s: "काउंटर पर खड़े ग्राहक का बिल सेकंडों में बनाएं।",
+        f6b: "इनवॉइसिंग",
+        f6s: "ऑनलाइन और काउंटर, दोनों बिक्री के लिए सही इनवॉइस।",
+        f7b: "अपने प्रिंटर पर बिल प्रिंट",
+        f7s: "जो थर्मल प्रिंटर आपके पास है, उसी को जोड़ें।",
+        g3h: "ग्राहकों को बार-बार लाएं",
+        g3p: "एक बार आने वालों को पक्के ग्राहक बनाएं।",
+        f8b: "ग्राहक संबंध",
+        f8s: "जानें कि आपके ग्राहक कौन हैं और वे आमतौर पर क्या खरीदते हैं।",
+        f9b: "लॉयल्टी मेंबरशिप पॉइंट",
+        f9s: "नियमित ग्राहकों को पॉइंट से इनाम दें, नियंत्रण आपके हाथ में।",
+        f10b: "छूट और ऑफ़र",
+        f10s: "जब चाहें अपनी छूट और त्योहार ऑफ़र चलाएं।",
+        g4h: "अपना हिसाब जानें",
+        g4p: "बिना कॉपी के देखें कि दुकान कैसी चल रही है।",
+        f11b: "बिक्री रिपोर्ट",
+        f11s: "रोज़ और महीने की बिक्री, सबसे ज़्यादा बिकने वाला सामान, ऑनलाइन और काउंटर एक साथ।",
+        f12b: "टैक्स रिपोर्ट",
+        f12s: "आपके बिलों से टैक्स का हिसाब, जब भी आपको या आपके अकाउंटेंट को चाहिए।",
+        f13b: "स्टॉक और रिपोर्टिंग",
+        f13s: "स्टॉक अपडेट करें और देखें क्या बिक रहा है, सब फ़ोन से।",
+        h_h2: "Yard कैसे काम करता है",
+        h_p: "Yard एक टेक्नोलॉजी प्लेटफ़ॉर्म है जो लोकल दुकानों को आस-पास के ग्राहकों से जोड़ता है। बिक्री आपके और आपके ग्राहक के बीच होती है।",
+        n1p: "ग्राहक ऐप। आपकी दुकान के पास के लोग आपका सामान देखते हैं और ऑर्डर करते हैं।",
+        n2p: "आपका विक्रेता ऐप। आप ऑर्डर देखते हैं, स्वीकार करते हैं, बिल बनाते हैं और डिलीवर करते हैं या पिकअप के लिए तैयार रखते हैं।",
+        n3h: "आपको भुगतान मिलता है",
+        n3p: "ऑर्डर डिलीवर होने या ले जाने पर ग्राहक आपको भुगतान करता है। पैसा हमारे पास से होकर नहीं जाता।",
+        direct: "ग्राहक आपको सीधे नकद या UPI से भुगतान करते हैं। दाम आप तय करते हैं, ऑर्डर आप स्वीकार करते हैं, और हर बिक्री का 100% आपका है।",
+        o_h2: "कोई कमीशन नहीं। और शुरुआती विक्रेताओं के लिए पहला साल मुफ़्त।",
+        o_p: "जुड़ने वाले पहले 100 विक्रेताओं को YardStore का 1 साल का सब्सक्रिप्शन मुफ़्त। उसके बाद एक आसान मासिक प्लान। हम आपके ऑर्डर में से कभी हिस्सा नहीं लेते।",
+        o_cta: "अपनी जगह पक्की करें",
+        pl1: "हर ऑर्डर पर 0% कमीशन",
+        pl2: "पहले 100 विक्रेताओं को 1 साल का सब्सक्रिप्शन मुफ़्त",
+        pl3: "भुगतान सीधे आपको",
+        pl4: "कॉल पर सेटअप में मदद, आपकी भाषा में",
+        st_h2: "तीन कदम में शुरू करें",
+        st1h: "फ़ॉर्म भरें",
+        st1p: "आपका नाम, नंबर और दुकान की जानकारी। एक मिनट लगता है।",
+        st2h: "हम आपको कॉल करेंगे",
+        st2p: "हम आपकी भाषा में ऐप समझाते हैं और वेरिफ़िकेशन में मदद करते हैं।",
+        st3h: "सामान जोड़ें, ऑर्डर पाएं",
+        st3p: "अपनी दुकान सेट करें और आस-पास के ग्राहकों से ऑर्डर पाना शुरू करें।",
+        faq_h2: "दुकानदार अक्सर पूछते हैं",
+        q1: "इसकी कीमत क्या है?",
+        a1: "ऑर्डर पर कोई कमीशन नहीं है। विक्रेता एक आसान मासिक प्लान लेते हैं, और पहले 100 विक्रेताओं को पहला साल मुफ़्त मिलता है। <a href=\"/products/yard/seller/pricing.html\">प्लान और कीमतें</a> देखें।",
+        q2: "मुझे भुगतान कैसे मिलेगा?",
+        a2: "ऑर्डर डिलीवर होने या ले जाने पर ग्राहक आपको सीधे नकद या UPI से भुगतान करता है। Yard आपका पैसा अपने पास नहीं रखता।",
+        q3: "क्या मैं इसे दुकान पर आने वाले ग्राहकों के लिए भी इस्तेमाल कर सकता हूं?",
+        a3: "हां। आप वॉक-इन ग्राहकों का बिल बना सकते हैं, बिल प्रिंट कर सकते हैं और उन्हें लॉयल्टी पॉइंट दे सकते हैं, बिल्कुल ऑनलाइन ऑर्डर की तरह।",
+        q4: "क्या यह मेरे थर्मल प्रिंटर के साथ चलेगा?",
+        a4: "YardStore ब्लूटूथ या LAN से थर्मल प्रिंटर से जुड़ता है। कॉल पर अपने प्रिंटर का मॉडल बताएं, हम जोड़ने में मदद करेंगे।",
+        q5: "क्या मुझे कंप्यूटर चाहिए?",
+        a5: "नहीं। YardStore ऐप Android और iPhone पर चलता है।",
+        q6: "रजिस्टर करने के लिए क्या चाहिए?",
+        a6: "आपकी दुकान की जानकारी और पहचान का वेरिफ़िकेशन। हमारी टीम कॉल पर पूरी मदद करती है।",
+        fin_h2: "आपके ग्राहक पहले से ऑनलाइन हैं। आप भी जुड़ें।",
+        fin_p: "संस्थापक ऑफ़र सिर्फ़ पहले 100 विक्रेताओं के लिए है। कॉल बैक पाएं, हम शुरू करने में मदद करेंगे।",
+        ft_terms: "नियम और शर्तें",
+        ft_privacy: "गोपनीयता नीति",
+        ft_griev: "शिकायत निवारण",
+        ft_contact: "संपर्क",
+        disclaim: "Yard (YardStore और YardBuy) एक टेक्नोलॉजी प्लेटफ़ॉर्म है जो विक्रेताओं को ग्राहकों से जोड़ता है। बिक्री सीधे विक्रेता और ग्राहक के बीच होती है, और भुगतान ग्राहक से सीधे विक्रेता को जाता है।",
+        mc_b: "0% कमीशन",
+        mc_s: "पहले 100 विक्रेता: 1 साल मुफ़्त"
+      }
+    };
+
+    (function () {
+      var LANGS = ['en', 'kn', 'hi'];
+      var CALL_LANG = { en: 'English', kn: 'Kannada', hi: 'Hindi' };
+      var STORE_KEY = 'yard_lang';
+      var root = document.documentElement;
+      var enTitle = document.title;
+      var callSelect = document.getElementById('lang');
+      var callTouched = false;
+      var autoPicked = false;
+
+      // Keep the English originals so we can switch back without a reload
+      var textNodes = document.querySelectorAll('[data-i18n]');
+      textNodes.forEach(function (el) { el._en = el.innerHTML; });
+      var attrMap = { 'data-i18n-ph': 'placeholder', 'data-i18n-title': 'title', 'data-i18n-aria': 'aria-label' };
+      Object.keys(attrMap).forEach(function (a) {
+        document.querySelectorAll('[' + a + ']').forEach(function (el) {
+          el['_en_' + attrMap[a]] = el.getAttribute(attrMap[a]) || '';
+        });
+      });
+
+      function setLang(lang) {
+        if (LANGS.indexOf(lang) === -1) lang = 'en';
+        var dict = I18N[lang] || {};
+
+        textNodes.forEach(function (el) {
+          var k = el.getAttribute('data-i18n');
+          el.innerHTML = (lang !== 'en' && dict[k]) ? dict[k] : el._en;
+        });
+        Object.keys(attrMap).forEach(function (a) {
+          var attr = attrMap[a];
+          document.querySelectorAll('[' + a + ']').forEach(function (el) {
+            var k = el.getAttribute(a);
+            el.setAttribute(attr, (lang !== 'en' && dict[k]) ? dict[k] : el['_en_' + attr]);
+          });
+        });
+
+        root.setAttribute('lang', lang);
+        document.title = (lang !== 'en' && dict._title) ? dict._title : enTitle;
+        document.getElementById('page_language').value = lang;
+
+        document.querySelectorAll('.lang button').forEach(function (b) {
+          b.setAttribute('aria-pressed', b.getAttribute('data-lang') === lang ? 'true' : 'false');
+        });
+
+        // Suggest the call language to match the page, unless the visitor already chose one
+        if (callSelect && !callTouched && (callSelect.value === '' || autoPicked)) {
+          callSelect.value = CALL_LANG[lang];
+          autoPicked = true;
+        }
+
+        try { localStorage.setItem(STORE_KEY, lang); } catch (e) { }
+      }
+
+      if (callSelect) callSelect.addEventListener('change', function () { callTouched = true; });
+
+      document.querySelectorAll('.lang button').forEach(function (b) {
+        b.addEventListener('click', function () { setLang(b.getAttribute('data-lang')); });
+      });
+
+      // Start language: ?lang=kn in the ad link > last choice on this device > English
+      var start = 'en';
+      try {
+        var q = new URLSearchParams(location.search).get('lang');
+        var saved = localStorage.getItem(STORE_KEY);
+        if (q && LANGS.indexOf(q) > -1) start = q;
+        else if (saved && LANGS.indexOf(saved) > -1) start = saved;
+      } catch (e) { }
+      if (start !== 'en') setLang(start);
+      else document.getElementById('page_language').value = 'en';
+    })();
+
+    (function () {
+      // Carry UTM parameters from the ad into the form
+      try {
+        var p = new URLSearchParams(location.search);
+        ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].forEach(function (k) {
+          var el = document.getElementById(k); if (el && p.get(k)) el.value = p.get(k);
+        });
+      } catch (e) { }
+
+      // Hide the sticky mobile button while the form is on screen
+      try {
+        var bar = document.getElementById('mcta');
+        var form = document.getElementById('interest');
+        if ('IntersectionObserver' in window && bar && form) {
+          new IntersectionObserver(function (entries) {
+            bar.classList.toggle('hide', entries[0].isIntersecting);
+          }, { threshold: 0.15 }).observe(form);
+        }
+      } catch (e) { }
+
+      // On submit: send the visitor's language to the thank-you page and stop double taps
+      var leadForm = document.getElementById('lead');
+      var submitBtn = leadForm ? leadForm.querySelector('button[type="submit"]') : null;
+      var nextInput = document.getElementById('next_url');
+      var nextBase = nextInput ? nextInput.value.split('?')[0] : '';
+      var SENDING = { en: 'Sending...', kn: I18N.kn.f_sending, hi: I18N.hi.f_sending };
+      function resetButton() {
+        if (!submitBtn) return;
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('is-sending');
+        var tmp = submitBtn.querySelector('.sending');
+        if (tmp) tmp.remove();
+      }
+      if (leadForm && submitBtn) {
+        leadForm.addEventListener('submit', function () {
+          var lang = document.documentElement.getAttribute('lang') || 'en';
+          if (nextInput) nextInput.value = nextBase + (lang !== 'en' ? '?lang=' + lang : '');
+          submitBtn.disabled = true;
+          submitBtn.classList.add('is-sending');
+          var tmp = document.createElement('span');
+          tmp.className = 'sending';
+          tmp.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> ' + (SENDING[lang] || SENDING.en);
+          submitBtn.appendChild(tmp);
+        });
+        // If the visitor comes back with the Back button, make the button usable again
+        window.addEventListener('pageshow', resetButton);
+      }
+
+      // Keep the mobile field to digits only
+      var m = document.getElementById('mobile');
+      if (m) m.addEventListener('input', function () { this.value = this.value.replace(/\D/g, '').slice(0, 10); });
+    })();
+  </script>
+</body>
+
+</html>
